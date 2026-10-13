@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage rental properties, tenant relationships, rent payments and maintenance in one simple place with Rentora.">
+  <title>Rentora | Property Management, Made Simpler</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="navbar"></div>
+
+  <main id="main">
+    <!-- Enhanced Luxury Hero Section -->
+    <section class="hero-luxury" aria-label="Rentora Luxury Property Management Hero">
+      <div class="hero-luxury-bg">
+        <img class="hero-bg-img" src="assets/twilight-luxury-apartment.png" alt="Twilight Luxury Apartment Community illuminated at dusk with landscaped gardens">
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <div class="section-shell hero-luxury-shell">
+        <div class="hero-luxury-content">
+          <div class="hero-pill-badge">
+            <span class="pill-dot"></span>
+            <span>NEXT-GEN PROPERTY MANAGEMENT & RENTALS</span>
+          </div>
+
+          <h1 class="hero-luxury-title">
+            Your Properties.<br>
+            <span>Managed to Perfection.</span>
+          </h1>
+
+          <p class="hero-luxury-desc">
+            Experience effortless rental operations for owners, property managers, and residents.
+            Automate leases, rent collection, maintenance workflows, and portfolio insights in one breathtaking workspace.
+          </p>
+
+          <!-- Interactive Quick Search / Filter Bar -->
+          <div class="hero-search-bar" role="search" aria-label="Search rental properties">
+            <div class="search-field">
+              <label for="hero-location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg> Location</label>
+              <input type="text" id="hero-location" placeholder="City, neighborhood, or area" value="Bangalore Central">
+            </div>
+            <div class="search-divider"></div>
+            <div class="search-field">
+              <label for="hero-type"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> Property Type</label>
+              <select id="hero-type">
+                <option value="all">All Residences</option>
+                <option value="apartment" selected>Luxury Apartment</option>
+                <option value="villa">Exclusive Villa</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="studio">Modern Studio</option>
+              </select>
+            </div>
+            <div class="search-divider"></div>
+            <div class="search-field">
+              <label for="hero-budget"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Budget Range</label>
+              <select id="hero-budget">
+                <option value="any">Any Price</option>
+                <option value="40-70">₹40k - ₹75k / mo</option>
+                <option value="75-120" selected>₹75k - ₹1.2L / mo</option>
+                <option value="120+">₹1.2L+ / mo</option>
+              </select>
+            </div>
+            <a class="button button-primary hero-search-btn" href="properties.html">
+              <span>Find Homes</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+            </a>
+          </div>
+
+          <!-- Proof & Trust Metrics Bar -->
+          <div class="hero-stats-band">
+            <div class="hero-stat-card">
+              <div class="stat-number"><strong>₹2.48Cr+</strong></div>
+              <div class="stat-label">Rent Collected Monthly</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="stat-number"><strong>99.4%</strong></div>
+              <div class="stat-label">Verified Occupancy Rate</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="stat-number"><strong>1,200+</strong></div>
+              <div class="stat-label">Premium Properties</div>
+            </div>
+            <div class="hero-stat-card hero-owner-badge">
+              <div class="avatar-stack" aria-hidden="true"><span>AM</span><span>RK</span><span>JS</span><span>+4k</span></div>
+              <div class="owner-badge-text">
+                <strong>Loved by 4,200+ Owners</strong>
+                <small>4.9 / 5 Rating across 18+ cities</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip section-shell" aria-label="Platform benefits">
+      <p>One workspace for every part of renting</p>
+      <div class="trust-items"><span><i>✓</i> Property records</span><span><i>✓</i> Rent tracking</span><span><i>✓</i> Tenant details</span><span><i>✓</i> Maintenance logs</span></div>
+    </section>
+
+    <section class="services-section section-pad" aria-label="Rentora Core Services">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> THE ESSENTIALS, CONNECTED</p>
+            <h2 class="dual-heading">Property management <span class="text-green">without the busywork.</span></h2>
+          </div>
+          <p>From the first tenant detail to the latest maintenance update, keep the important things moving without juggling scattered spreadsheets.</p>
+        </div>
+        <div class="service-grid">
+          <!-- 01: Property Portfolio -->
+          <article class="service-card service-card-featured">
+            <div class="service-card-cover">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Luxury residential property portfolio units" loading="lazy">
+              <span class="service-card-tag">PORTFOLIO</span>
+            </div>
+            <div class="service-card-body">
+              <div class="service-card-header">
+                <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg></div>
+                <span class="card-number">01</span>
+              </div>
+              <h3>Property portfolio</h3>
+              <p>Keep addresses, unit specs, occupancy rates, and rental agreements organized in one clear hub.</p>
+              <a href="service-detail.html?service=property-management" class="text-link">Explore property tools <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- 02: Tenant Management -->
+          <article class="service-card">
+            <div class="service-card-cover">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Tenant relations and comfortable apartment living" loading="lazy">
+              <span class="service-card-tag">RESIDENTS</span>
+            </div>
+            <div class="service-card-body">
+              <div class="service-card-header">
+                <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"/></svg></div>
+                <span class="card-number">02</span>
+              </div>
+              <h3>Tenant management</h3>
+              <p>Centralize tenant profiles, emergency contacts, lease renewals, and resident messaging effortlessly.</p>
+              <a href="service-detail.html?service=tenant-management" class="text-link">Manage tenant details <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- 03: Rent Tracking -->
+          <article class="service-card">
+            <div class="service-card-cover">
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80" alt="Financial tracking, rent schedules, and receipts" loading="lazy">
+              <span class="service-card-tag">FINANCES</span>
+            </div>
+            <div class="service-card-body">
+              <div class="service-card-header">
+                <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div>
+                <span class="card-number">03</span>
+              </div>
+              <h3>Rent tracking</h3>
+              <p>Track collected, pending, and overdue dues in real-time with automated receipts and bank reconciliations.</p>
+              <a href="service-detail.html?service=rent-payment-tracking" class="text-link">Track rental payments <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- 04: Maintenance Requests -->
+          <article class="service-card">
+            <div class="service-card-cover">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Maintenance technician inspecting home electricals and plumbing" loading="lazy">
+              <span class="service-card-tag">DISPATCH</span>
+            </div>
+            <div class="service-card-body">
+              <div class="service-card-header">
+                <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4L14 13l-3-3 3.7-3.7Z"/></svg></div>
+                <span class="card-number">04</span>
+              </div>
+              <h3>Maintenance requests</h3>
+              <p>Log incoming repair tickets, schedule vetted local contractors, and track repair sign-offs seamlessly.</p>
+              <a href="service-detail.html?service=maintenance-coordination" class="text-link">Organize maintenance <span>→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="management-section section-pad">
+      <div class="section-shell management-layout">
+        <div class="management-visual">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85" alt="Bright, modern apartment interior with natural materials" loading="lazy">
+          <div class="management-note"><span class="note-mark">R.</span><div><strong>Clarity at every step</strong><small>Your rental portfolio, neatly organized.</small></div></div>
+        </div>
+        <div class="management-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> MORE CLARITY, LESS CHASING</p>
+          <h2 class="dual-heading">Know what needs attention. <span class="text-green">And what doesn't.</span></h2>
+          <p class="management-intro">Rentora gives you a clearer view of your day-to-day property operations, so important details don't get lost in messages, notes or spreadsheets.</p>
+          <div class="benefit-list">
+            <div><span class="benefit-check">✓</span><div><h3>A clearer overview</h3><p>See your properties, occupancy and rental records together.</p></div></div>
+            <div><span class="benefit-check">✓</span><div><h3>Fewer missed details</h3><p>Keep payment statuses, lease information and repair updates organized.</p></div></div>
+            <div><span class="benefit-check">✓</span><div><h3>One consistent workflow</h3><p>Use a repeatable process as your rental portfolio grows.</p></div></div>
+          </div>
+          <a class="button button-primary" href="about.html">Discover Rentora <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Redesigned 3-Steps Process Section with Interactive Visual Cards -->
+    <section class="steps-section section-pad" aria-label="How Rentora Works">
+      <div class="section-shell">
+        <div class="section-heading section-heading-centered">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> A BETTER ROUTINE STARTS HERE</p>
+            <h2 class="dual-heading">Three steps to a more <span class="text-green">organized portfolio.</span></h2>
+          </div>
+          <p>Simple workflows make it easy to onboard units, connect tenants, and keep operations running on autopilot.</p>
+        </div>
+        <div class="steps-modern-grid">
+          <!-- Step 1 -->
+          <article class="step-modern-card">
+            <div class="step-card-visual">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Adding properties to system" loading="lazy">
+              <span class="step-badge">STEP 01</span>
+            </div>
+            <div class="step-card-content">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg>
+              </div>
+              <h3>Add your properties</h3>
+              <p>Upload property profiles, assign unit specifications, documents, and set up your tailored lease rules in minutes.</p>
+              <ul class="step-checkmarks">
+                <li><span>✓</span> Automated unit cataloging</li>
+                <li><span>✓</span> Document & deed storage</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="step-modern-card">
+            <div class="step-card-visual">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Connecting tenants and digital leases" loading="lazy">
+              <span class="step-badge">STEP 02</span>
+            </div>
+            <div class="step-card-content">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"/></svg>
+              </div>
+              <h3>Organize your tenants</h3>
+              <p>Invite residents to digital agreements, link payment accounts, and maintain unified communication threads.</p>
+              <ul class="step-checkmarks">
+                <li><span>✓</span> Verified tenant vetting</li>
+                <li><span>✓</span> Instant digital e-signatures</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="step-modern-card">
+            <div class="step-card-visual">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Realtime dashboard updates and payment tracking" loading="lazy">
+              <span class="step-badge">STEP 03</span>
+            </div>
+            <div class="step-card-content">
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3>Stay on top of updates</h3>
+              <p>Receive automatic rent deposits, review maintenance sign-offs, and track monthly cash flows from your phone.</p>
+              <ul class="step-checkmarks">
+                <li><span>✓</span> Automated rent deposits</li>
+                <li><span>✓</span> Live repair status alerts</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SECTION 1: Rent Payment Tracking (Dedicated Deep-Dive) -->
+    <section class="rent-tracking-feature section-pad" aria-label="Rent Payment Tracking">
+      <div class="section-shell rent-tracking-grid">
+        <div class="rent-tracking-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> SEAMLESS RENTAL FINANCES</p>
+          <h2 class="dual-heading">Automated rent tracking <span class="text-green">with zero friction.</span></h2>
+          <p class="section-lead">Say goodbye to chasing bank statements and sending awkward text reminders. Rentora tracks rent collections, generates instant tax receipts, and calculates portfolio yields automatically.</p>
+          
+          <div class="finance-perks-list">
+            <div class="finance-perk">
+              <div class="perk-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div>
+              <div>
+                <strong>Automated Rent Reminders & Invoicing</strong>
+                <small>WhatsApp & Email notifications sent before due dates with instant UPI and card gateways.</small>
+              </div>
+            </div>
+            <div class="finance-perk">
+              <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+              <div>
+                <strong>Real-Time Ledger & Overdue Alerts</strong>
+                <small>Clear status breakdown across Paid, Pending, and Overdue balances with auto-late fee calculation.</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="feature-actions">
+            <a href="service-detail.html?service=rent-payment-tracking" class="button button-primary">Learn more about rent tracking <span>→</span></a>
+            <a href="register.html" class="button button-secondary">Set up rent collection <span>↗</span></a>
+          </div>
+        </div>
+
+        <div class="rent-tracking-visual">
+          <div class="finance-mockup-card">
+            <div class="mockup-header">
+              <div class="mockup-title">
+                <span>MONTHLY COLLECTION OVERVIEW</span>
+                <strong>October 2026 Inflow</strong>
+              </div>
+              <span class="mockup-status-tag">98.4% COLLECTED</span>
+            </div>
+
+            <div class="mockup-metric-row">
+              <div class="metric-box">
+                <small>Total Received</small>
+                <strong>₹2,48,500</strong>
+                <span class="positive-trend">↑ +12.4% vs last mo</span>
+              </div>
+              <div class="metric-box">
+                <small>Outstanding</small>
+                <strong>₹14,000</strong>
+                <span class="pending-trend">1 unit pending</span>
+              </div>
+            </div>
+
+            <!-- Transactions list -->
+            <div class="mockup-ledger-list">
+              <div class="ledger-item">
+                <div class="ledger-avatar">🏢</div>
+                <div class="ledger-info">
+                  <strong>Skyline Horizon Villa #4B</strong>
+                  <small>Rahul Sharma · Auto-pay via UPI</small>
+                </div>
+                <div class="ledger-amount success">
+                  <strong>+₹65,000</strong>
+                  <small>Received Oct 02</small>
+                </div>
+              </div>
+
+              <div class="ledger-item">
+                <div class="ledger-avatar">🏡</div>
+                <div class="ledger-info">
+                  <strong>Palm Grove Residence #12</strong>
+                  <small>Ananya Nair · Net Banking</small>
+                </div>
+                <div class="ledger-amount success">
+                  <strong>+₹42,000</strong>
+                  <small>Received Oct 04</small>
+                </div>
+              </div>
+
+              <div class="ledger-item">
+                <div class="ledger-avatar">🌇</div>
+                <div class="ledger-info">
+                  <strong>Emerald Heights Penthouse #7</strong>
+                  <small>Vikramaditya Bose · Invoice Sent</small>
+                </div>
+                <div class="ledger-amount pending">
+                  <strong>₹14,000</strong>
+                  <small>Due Tomorrow</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SECTION 2: Maintenance Management (Dedicated Deep-Dive) -->
+    <section class="maintenance-feature section-pad" aria-label="Maintenance Management">
+      <div class="section-shell maintenance-grid">
+        <div class="maintenance-visual-wrap">
+          <div class="maintenance-photo-card">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Professional maintenance and property care" loading="lazy">
+            <div class="maintenance-floating-pill">
+              <span class="live-dot"></span>
+              <div>
+                <strong>Average Resolution: 3.4 hrs</strong>
+                <small>Over 920+ vetted technicians available</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="maintenance-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> HASSLE-FREE PROPERTY CARE</p>
+          <h2 class="dual-heading">Maintenance management <span class="text-green">without the chaos.</span></h2>
+          <p class="section-lead">Tenants report repair requests with photos and videos in two taps. Rentora matches certified technicians, gathers estimates, and logs receipts directly into the owner portal.</p>
+
+          <div class="maintenance-cards-list">
+            <div class="m-card">
+              <div class="m-number">01</div>
+              <div>
+                <strong>Direct Tenant Ticket Logging</strong>
+                <p>Tenants submit plumbing, HVAC, or electrical issues directly via mobile web with photo attachments.</p>
+              </div>
+            </div>
+            <div class="m-card">
+              <div class="m-number">02</div>
+              <div>
+                <strong>Vetted Contractor Dispatch</strong>
+                <p>Pre-approved plumbers, electricians, and painters receive job dispatches with transparent upfront pricing.</p>
+              </div>
+            </div>
+            <div class="m-card">
+              <div class="m-number">03</div>
+              <div>
+                <strong>Work Order Sign-Off & Expense Tracking</strong>
+                <p>Digital completion sign-offs and auto-deductions from monthly rental ledgers keep bookkeepers happy.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-actions">
+            <a href="service-detail.html?service=maintenance-coordination" class="button button-primary">Explore maintenance workflows <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Workspace Preview -->
+    <section class="dashboard-cta section-shell">
+      <div class="cta-content">
+        <p class="eyebrow">YOUR PROPERTY WORKSPACE</p>
+        <h2>Bring the whole picture<br><span style="color:#6ee7b7">into focus.</span></h2>
+        <p>Make your next property decision with your records, payment statuses and maintenance updates close at hand.</p>
+        <a class="button button-light" href="login.html">Explore the owner portal <span>↗</span></a>
+      </div>
+      <div class="mini-dashboard" aria-label="Illustrative owner dashboard preview">
+        <div class="mini-topbar"><span class="mini-brand"><i></i> Rentora</span><span class="mini-user">Owner workspace&nbsp; ◦</span></div>
+        <div class="mini-body"><small>PORTFOLIO OVERVIEW</small><h3>Your properties</h3>
+          <div class="mini-stats"><div><small>Properties</small><strong>08</strong><span>Across your portfolio</span></div><div><small>Occupancy</small><strong>94%</strong><span>Units currently occupied</span></div></div>
+          <div class="mini-row"><span class="mini-house">⌂</span><div><strong>Greenwood Residence</strong><small>Unit 204 · Rent status</small></div><span class="mini-paid">Paid</span></div>
+          <div class="mini-row"><span class="mini-house">⌂</span><div><strong>Parkside Apartments</strong><small>Unit 106 · Rent status</small></div><span class="mini-pending">Pending</span></div>
+          <div class="mini-row"><span class="mini-house">⌂</span><div><strong>Lakeview Homes</strong><small>Unit 301 · Rent status</small></div><span class="mini-paid">Paid</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journal Section with Equalized Cards & Consistent CTA Button Heights -->
+    <section class="journal-section section-pad" aria-label="The Rentora Journal">
+      <div class="section-shell">
+        <div class="section-heading journal-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> THE RENTORA JOURNAL</p>
+            <h2 class="dual-heading">Smarter ways to manage <span class="text-green">your rental property.</span></h2>
+          </div>
+          <a href="blog.html" class="text-link">Visit the journal <span>→</span></a>
+        </div>
+        <div class="journal-grid">
+          <article class="journal-card">
+            <a class="journal-image" href="blog-details.html">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Modern home exterior" loading="lazy">
+              <span class="journal-card-badge">MANAGEMENT</span>
+            </a>
+            <div class="journal-card-body">
+              <div class="journal-meta"><span>PROPERTY BASICS</span><span>6 MIN READ</span></div>
+              <h3><a href="blog-details.html">A practical checklist for new rental property owners</a></h3>
+              <p class="journal-excerpt">From initial lease drafts to security deposit regulations, here is how to start off right.</p>
+              <a class="text-link journal-btn" href="blog-details.html">Read article <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <a class="journal-image" href="blog-details.html">
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80" alt="Planning rental income and financial records" loading="lazy">
+              <span class="journal-card-badge">FINANCE</span>
+            </a>
+            <div class="journal-card-body">
+              <div class="journal-meta"><span>RENT COLLECTION</span><span>4 MIN READ</span></div>
+              <h3><a href="blog-details.html">Build a rent tracking routine that works for you</a></h3>
+              <p class="journal-excerpt">How automating your monthly payment reconciliations reduces delinquency by 85%.</p>
+              <a class="text-link journal-btn" href="blog-details.html">Read article <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <a class="journal-image" href="blog-details.html">
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Home maintenance tools ready for a repair" loading="lazy">
+              <span class="journal-card-badge">MAINTENANCE</span>
+            </a>
+            <div class="journal-card-body">
+              <div class="journal-meta"><span>MAINTENANCE</span><span>5 MIN READ</span></div>
+              <h3><a href="blog-details.html">Keep property maintenance from becoming a scramble</a></h3>
+              <p class="journal-excerpt">Proactive seasonal upkeep schedules that keep tenants happy and save capital expenditure.</p>
+              <a class="text-link journal-btn" href="blog-details.html">Read article <span>→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upgraded High-Impact CTA Banner with House Keys on Green Desktop Background -->
+    <section class="final-cta-premium section-shell" aria-label="Get Started with Rentora">
+      <div class="cta-keys-bg">
+        <img class="cta-bg-img" src="assets/house-keys-green-desktop.png" alt="House Keys on Green Desktop with gold house keychain" loading="lazy">
+        <div class="cta-bg-gradient"></div>
+      </div>
+
+      <div class="cta-premium-content">
+        <div class="cta-left-box">
+          <p class="eyebrow cta-pill-tag"><span class="eyebrow-dot"></span> MAKE ROOM FOR WHAT'S NEXT</p>
+          <h2 class="cta-main-title">Ready for a more organized<br><span>way to manage rentals?</span></h2>
+          <p class="cta-lead">
+            Join thousands of independent landlords and property managers who save 12+ hours every week with Rentora's unified rental command center.
+          </p>
+
+          <div class="cta-button-group">
+            <a class="button button-primary cta-btn-glow" href="register.html">
+              <span>Get started with Rentora</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary cta-btn-outline" href="contact.html">
+              <span>Schedule a Demo</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="cta-guarantees">
+            <span><i>✓</i> No credit card required</span>
+            <span><i>✓</i> Instant onboarding</span>
+            <span><i>✓</i> Cancel anytime</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+</body>
+</html>

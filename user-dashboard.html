@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rentora | My Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/user-dashboard.css"><script src="js/user-dashboard.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="index.html" aria-label="Rentora home">
+  <span class="brand-mark" style="background: var(--green); border-radius: 12px; width: 40px; height: 40px; display: grid; place-items: center; box-shadow: 0 4px 12px rgba(40,119,79,.24);">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" width="22" height="22"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg>
+  </span>
+  <span class="brand-copy" style="display: flex; flex-direction: column; line-height: 1.1;">
+    <strong style="font: 800 22px Manrope, sans-serif; letter-spacing: -1px; color: var(--navy);">Rentora<span style="color: var(--green);">.</span></strong>
+    <small style="font: 800 8px 'DM Sans', sans-serif; letter-spacing: 1.3px; color: var(--muted); margin-top: 2px;">PROPERTY MANAGEMENT</small>
+  </span>
+</a>
+<div class="brand-preferences"><div class="direction-toggle"><button class="preference-button direction-button active" data-direction="ltr" aria-pressed="true">LTR</button><button class="preference-button direction-button" data-direction="rtl" aria-pressed="false">RTL</button></div><button class="preference-button theme-toggle" id="themeToggle" aria-pressed="false"><span id="themeIcon">☾</span><span id="themeLabel">Dark mode</span></button></div>
+<div class="workspace-label">MY ACCOUNT</div><nav class="side-nav" aria-label="Customer navigation">
+  <button class="nav-item active" data-view="overview"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Overview</button>
+  <button class="nav-item" data-view="saved"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>Saved properties <span class="nav-count" id="savedCount">3</span></button>
+  <button class="nav-item" data-view="enquiries"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>My enquiries <span class="nav-count new-count" id="enquiryCount">2</span></button>
+  <button class="nav-item" data-view="payments"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>Payments & Rent <span class="nav-count new-count" style="background:#fff3dd;color:#a97725;">Due Soon</span></button>
+  <button class="nav-item" data-view="leases"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>My Tenancy & Escrow</button>
+  <button class="nav-item" data-view="maintenance"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Maintenance & Repairs</button>
+  <button class="nav-item" data-view="rentals"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg></span>Rental History & Homes</button>
+  <button class="nav-item" data-view="preferences"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>Housing Preferences</button>
+  <button class="nav-item" data-view="profile"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>My profile</button>
+</nav>
+<div class="sidebar-bottom" style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); display: grid; gap: 8px;">
+  <button class="profile-switch" style="display: flex; align-items: center; gap: 9px; width: 100%; border: 0; padding: 4px 3px; background: transparent; text-align: left;">
+    <img class="avatar user-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80" alt="Resident User" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line);">
+    <span class="profile-copy"><strong style="font-size: 11px;">Resident User</strong><small style="font-size: 9px; color: var(--muted); display: block;">Verified Tenant</small></span>
+  </button>
+  <button class="logout-button" id="userLogoutBtn" type="button" aria-label="Log out of account" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--canvas); color: #aa3b3b; font-size: 11px; font-weight: 700; cursor: pointer;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    <span>Log Out</span>
+  </button>
+</div>
+</aside>
+<main class="main-area">
+<header class="topbar">
+  <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="breadcrumb"><span>My account</span><span class="crumb-slash">/</span><strong id="pageCrumb">Overview</strong></div>
+  <div class="topbar-actions">
+    <a class="secondary-button" href="index.html" style="display: inline-flex; align-items: center; gap: 7px; text-decoration: none; padding: 8px 12px; font-size: 11px; font-weight: 700; border-radius: 8px; border: 1px solid var(--line); background: var(--surface);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      <span>Back to Website</span>
+    </a>
+  </div>
+</header>
+<div class="content-wrap">
+<section class="page-view active-view" id="view-overview"><div class="page-heading"><div><p class="eyebrow">YOUR RENTORA ACCOUNT</p><h1>Welcome back</h1><p class="page-subtitle">Keep your favourite homes and rental enquiries in one place.</p></div><a class="primary-button" href="properties.html">Explore properties <span>↗</span></a></div>
+<div class="welcome-banner"><div><span class="banner-kicker">YOUR NEXT CHAPTER STARTS HERE</span><h2>Find a place that feels like home.</h2><p>Browse available homes and let our team help you with the next step.</p><a href="properties.html" class="banner-link">Browse listings <span>→</span></a></div><div class="banner-art" aria-hidden="true"><div class="sun"></div><div class="house"><span class="roof"></span><span class="house-body"><i></i><b></b><em></em></span></div><div class="plant plant-one"></div><div class="plant plant-two"></div></div></div>
+<div class="stats-grid"><article class="stat-card"><div class="stat-top"><span>Saved properties</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span></div><div class="stat-value" id="savedStat">3</div><p class="stat-note">Homes you want to revisit</p><button class="text-button" data-go="saved">View saved <span>→</span></button></article><article class="stat-card"><div class="stat-top"><span>Active enquiries</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></div><div class="stat-value" id="activeStat">2</div><p class="stat-note">Waiting for the next update</p><button class="text-button" data-go="enquiries">Track enquiries <span>→</span></button></article><article class="stat-card"><div class="stat-top"><span>Profile completion</span><span class="stat-icon purple-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div><div class="stat-value">80<span class="percent">%</span></div><div class="progress-track"><span style="width:80%"></span></div><p class="stat-note">Add any missing details</p><button class="text-button" data-go="profile">Update profile <span>→</span></button></article></div>
+<div class="section-heading"><div><h2>Recently saved</h2><p>Your shortlist of places to consider.</p></div><button class="text-button" data-go="saved">View all <span>→</span></button></div><div class="property-grid" id="recentSaved"></div>
+<div class="section-heading enquiry-heading"><div><h2>Recent enquiries</h2><p>See the latest status from the Rentora team.</p></div><button class="text-button" data-go="enquiries">All enquiries <span>→</span></button></div><div class="panel enquiry-preview" id="recentEnquiries"></div>
+</section>
+<section class="page-view" id="view-saved"><div class="page-heading"><div><p class="eyebrow">YOUR SHORTLIST</p><h1>Saved properties</h1><p class="page-subtitle">Keep the homes you like together and compare them later.</p></div><a class="primary-button" href="properties.html">Explore more <span>↗</span></a></div><div class="toolbar"><label class="table-search"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input id="savedSearch" type="search" placeholder="Search saved properties…"></label><select id="savedSort" aria-label="Sort saved properties"><option value="recent">Recently saved</option><option value="rent-low">Rent: low to high</option><option value="rent-high">Rent: high to low</option></select></div><div class="property-grid saved-grid" id="savedGrid"></div><div class="empty-state" id="savedEmpty" hidden><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h2>No saved properties found</h2><p>Try a different search or explore available homes.</p><a class="primary-button" href="properties.html">Browse properties</a></div></section>
+<section class="page-view" id="view-enquiries"><div class="page-heading"><div><p class="eyebrow">YOUR RENTAL JOURNEY</p><h1>My enquiries</h1><p class="page-subtitle">Track your messages to Rentora and follow up when needed.</p></div><a class="primary-button" href="properties.html">Find a home <span>↗</span></a></div><div class="notice"><span class="notice-icon">i</span><p><strong>What happens next?</strong> Our team reviews your enquiry and contacts you to discuss the property and possible viewing arrangements.</p></div><div class="toolbar"><label class="table-search"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input id="enquirySearch" type="search" placeholder="Search by property…"></label><select id="enquiryFilter" aria-label="Filter enquiries"><option value="all">All statuses</option><option>New</option><option>Contacted</option><option>Viewing Scheduled</option><option>Resolved</option><option>Closed</option></select></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>PROPERTY</th><th>ENQUIRY DATE</th><th>STATUS</th><th>LAST UPDATE</th><th></th></tr></thead><tbody id="enquiryRows"></tbody></table></div><div class="table-footer"><span id="enquirySummary">Showing 3 enquiries</span><span class="demo-note">Sample dashboard data</span></div></div><div class="empty-state" id="enquiryEmpty" hidden><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h2>No enquiries found</h2><p>When you enquire about a property, it will appear here.</p></div></section>
+<section class="page-view" id="view-profile"><div class="page-heading"><div><p class="eyebrow">ACCOUNT SETTINGS</p><h1>My profile</h1><p class="page-subtitle">Keep your contact details up to date so our team can reach you.</p></div></div><div class="profile-layout"><div class="panel profile-card"><div class="profile-cover"></div><div class="profile-avatar-wrap"><img class="avatar profile-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=240&q=80" alt="Resident User" style="width: 58px; height: 58px; border: 4px solid white; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,.08);"><div style="margin-left: 4px;"><h2 id="profileNameHeading">Resident User</h2><p>Rentora customer</p></div></div><div class="profile-card-note"><span style="display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #dcefe3; color: #27784d; font-weight: 800; flex: none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Your account</strong><p>Use the details below for rental enquiry follow-ups.</p></div></div><div class="profile-facts"><div><span>Member since</span><strong>October 2026</strong></div><div><span>Saved properties</span><strong id="profileSavedCount">3 homes</strong></div><div><span>Enquiries sent</span><strong>3 enquiries</strong></div></div></div><div class="panel profile-form-panel"><div class="panel-heading"><div><h2>Personal information</h2><p>Update your basic contact details.</p></div><span class="edit-tag">Editable demo</span></div><form id="profileForm" class="profile-form"><div class="form-row"><label>Full name<input name="fullName" id="fullName" required value="Resident User" autocomplete="name"></label><label>Email address<input name="email" id="email" type="email" required value="resident@rentora.in" autocomplete="email"></label></div><div class="form-row"><label>Phone number<input name="phone" id="phone" type="tel" value="+91 98765 43210" autocomplete="tel"></label><label>Preferred contact method<select name="contactMethod" id="contactMethod"><option>Email</option><option>Phone</option><option>Either email or phone</option></select></label></div><label>Preferred location<input name="location" id="location" value="Chennai, Tamil Nadu" placeholder="City or neighbourhood"></label><label>About your search<textarea name="notes" id="notes" rows="4" placeholder="Optional: tell us what kind of home you're looking for."></textarea></label><div class="form-actions"><span class="form-hint">Changes are stored in this browser demo only.</span><button class="primary-button" type="submit">Save changes</button></div></form></div></div></section>
+
+<!-- 5. VIEW: MY PAYMENTS & RENT RECEIPTS -->
+<section class="page-view" id="view-payments">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">RENTAL FINANCE & RECEIPTS</p>
+      <h1>My Payments & Invoices</h1>
+      <p class="page-subtitle">View your monthly rental dues, auto-debit receipts, and security deposit escrow protection.</p>
+    </div>
+    <button class="primary-button" onclick="alert('Redirecting to RBI-regulated Razorpay UPI checkout for upcoming rent dues.')">
+      <span>Pay Upcoming Rent (₹24,000)</span>
+      <span>→</span>
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <article class="stat-card">
+      <div class="stat-top"><span>Upcoming Rent Due</span><span class="stat-icon amber-icon">₹</span></div>
+      <div class="stat-value">₹24,000</div>
+      <p class="stat-note" style="color: #c48b26; font-weight: 700;">Due on 15 Oct 2026</p>
+      <button class="text-button" onclick="alert('Payment initiated via UPI QR')">Pay Now <span>→</span></button>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top"><span>Total Paid to Date</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+      <div class="stat-value">₹2,88,000</div>
+      <p class="stat-note">12 consecutive on-time payments</p>
+      <span style="font-size: 10px; font-weight: 700; color: #28794f;">Credit Score: +45 pts boost</span>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top"><span>Escrow Deposit Held</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span></div>
+      <div class="stat-value">₹72,000</div>
+      <p class="stat-note">Secured with ICICI Trustee Escrow</p>
+      <button class="text-button" onclick="alert('Downloading Escrow Bond Certificate PDF')">View Bond <span>→</span></button>
+    </article>
+  </div>
+
+  <div class="panel table-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Rent Payment History & Invoices</h2>
+        <p>Instant official tax receipts and transaction logs.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>RECEIPT #</th>
+            <th>PROPERTY LEASED</th>
+            <th>PERIOD</th>
+            <th>AMOUNT</th>
+            <th>PAYMENT MODE</th>
+            <th>STATUS</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="font-family: monospace;">#RCP-10492</strong></td>
+            <td><strong>Modern Family Apartment</strong><small>Flat 3B, Anna Nagar</small></td>
+            <td>September 2026</td>
+            <td style="font-weight: 700; color: #28794f;">₹24,000</td>
+            <td>UPI Auto-Debit (Google Pay)</td>
+            <td><span class="status status-resolved">Paid</span></td>
+            <td><button class="text-button" onclick="alert('Downloading PDF Receipt #RCP-10492')">Download PDF ↗</button></td>
+          </tr>
+          <tr>
+            <td><strong style="font-family: monospace;">#RCP-10418</strong></td>
+            <td><strong>Modern Family Apartment</strong><small>Flat 3B, Anna Nagar</small></td>
+            <td>August 2026</td>
+            <td style="font-weight: 700; color: #28794f;">₹24,000</td>
+            <td>UPI Auto-Debit (Google Pay)</td>
+            <td><span class="status status-resolved">Paid</span></td>
+            <td><button class="text-button" onclick="alert('Downloading PDF Receipt #RCP-10418')">Download PDF ↗</button></td>
+          </tr>
+          <tr>
+            <td><strong style="font-family: monospace;">#RCP-10355</strong></td>
+            <td><strong>Modern Family Apartment</strong><small>Flat 3B, Anna Nagar</small></td>
+            <td>July 2026</td>
+            <td style="font-weight: 700; color: #28794f;">₹24,000</td>
+            <td>HDFC NetBanking</td>
+            <td><span class="status status-resolved">Paid</span></td>
+            <td><button class="text-button" onclick="alert('Downloading PDF Receipt #RCP-10355')">Download PDF ↗</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VIEW: MY TENANCY LEASE AGREEMENT & ESCROW -->
+<section class="page-view" id="view-leases">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">CONTRACT DETAILS</p>
+      <h1>My Tenancy & Escrow Protection</h1>
+      <p class="page-subtitle">Your legally verified lease agreement, digital signature, and landlord terms.</p>
+    </div>
+    <button class="primary-button" onclick="alert('Downloading e-Stamped Tenancy Agreement PDF')">
+      <span>Download Full Agreement PDF</span>
+      <span>↗</span>
+    </button>
+  </div>
+
+  <div class="profile-layout">
+    <div class="panel profile-card">
+      <div class="profile-cover" style="height: 140px; position: relative; overflow: hidden;">
+        <img src="assets/twilight-luxury-apartment.png" alt="Modern Family Apartment" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(18,48,34,.6) 100%);"></div>
+      </div>
+      <div style="padding: 20px;">
+        <span class="status status-resolved" style="margin-bottom: 10px;">Active Agreement</span>
+        <h2 style="font-family: Manrope, sans-serif; font-size: 16px; margin: 0 0 6px;">Modern Family Apartment</h2>
+        <p style="font-size: 11px; color: var(--muted); margin: 0 0 16px;">Tower B, Flat 3B, Anna Nagar, Chennai</p>
+        <div class="profile-facts" style="border-top: 1px solid var(--line); padding: 0;">
+          <div><span>Agreement ID</span><strong style="font-family: monospace;">LS-2025-109</strong></div>
+          <div><span>Monthly Rent</span><strong>₹24,000 / mo</strong></div>
+          <div><span>Security Escrow</span><strong style="color: #28794f;">₹72,000</strong></div>
+          <div><span>Lease Duration</span><strong>11 Months</strong></div>
+          <div><span>Expiry Date</span><strong style="color: #c48b26;">31 Oct 2026</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="padding: 24px;">
+      <h2 style="font-family: Manrope, sans-serif; font-size: 15px; margin: 0 0 10px;">Tenant Safeguards & Rights</h2>
+      <p style="font-size: 11px; color: var(--muted); line-height: 1.6; margin: 0 0 20px;">Your lease agreement is executed under the Tamil Nadu Regulation of Rights and Responsibilities of Landlords and Tenants Act and backed by an independent escrow account.</p>
+
+      <div style="display: grid; gap: 14px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: var(--canvas); border-radius: 8px; border: 1px solid var(--line);">
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: #dff1e6; color: #28794f; display: grid; place-items: center; font-weight: 800; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <strong style="font-size: 11px; color: var(--navy);">Escrow Deposit Refund Guarantee</strong>
+            <p style="font-size: 10px; color: var(--muted); margin: 4px 0 0;">Your ₹72,000 security deposit is protected in an independent escrow account and automatically returned within 7 days of lease handover.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: var(--canvas); border-radius: 8px; border: 1px solid var(--line);">
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: #dff1e6; color: #28794f; display: grid; place-items: center; font-weight: 800; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <strong style="font-size: 11px; color: var(--navy);">NeSL Digital e-Stamping</strong>
+            <p style="font-size: 10px; color: var(--muted); margin: 4px 0 0;">Legally certified and stamped with Government of Tamil Nadu digital non-judicial stamp duty certificates.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: var(--canvas); border-radius: 8px; border: 1px solid var(--line);">
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: #dff1e6; color: #28794f; display: grid; place-items: center; font-weight: 800; flex-shrink: 0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <strong style="font-size: 11px; color: var(--navy);">Included Maintenance & Repairs</strong>
+            <p style="font-size: 10px; color: var(--muted); margin: 4px 0 0;">Full electrical, plumbing, and structural upkeep managed directly by Rentora verified rapid-response technicians.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. VIEW: MAINTENANCE & REPAIRS (Service Requests) -->
+<section class="page-view" id="view-maintenance">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">RESIDENT SUPPORT</p>
+      <h1>Maintenance & Service Requests</h1>
+      <p class="page-subtitle">Report apartment issues, schedule technician visits, and track repair SLAs in real time.</p>
+    </div>
+    <button class="primary-button" onclick="alert('Opening Emergency Dispatch Ticket modal: Technicians arrive within 90 minutes.')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span>Raise Service Request</span>
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <article class="stat-card">
+      <div class="stat-top"><span>Active Tickets</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span></div>
+      <div class="stat-value">1 Open</div>
+      <p class="stat-note" style="color: #4379a9; font-weight: 700;">Technician dispatched today</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top"><span>Resolved Tickets</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+      <div class="stat-value">7 Resolved</div>
+      <p class="stat-note">100% on-time resolution under 24 hrs</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top"><span>24/7 Helpline SLA</span><span class="stat-icon amber-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></div>
+      <div class="stat-value">&lt; 90 Min</div>
+      <p class="stat-note">Emergency plumbing & power dispatch</p>
+    </article>
+  </div>
+
+  <div class="panel table-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Your Service Activity History</h2>
+        <p>Tickets logged for Modern Family Apartment, Anna Nagar.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>TICKET #</th>
+            <th>CATEGORY</th>
+            <th>DESCRIPTION</th>
+            <th>SCHEDULED DATE</th>
+            <th>TECHNICIAN</th>
+            <th>STATUS</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="font-family: monospace;">#SR-4921</strong></td>
+            <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Air Conditioning</span></td>
+            <td>Master bedroom AC filter routine servicing & coolant check.</td>
+            <td>Today, 2:30 PM</td>
+            <td><strong>S. Manickam</strong><small>Certified Daikin Tech</small></td>
+            <td><span class="status status-viewing">In Progress</span></td>
+            <td><button class="secondary-button small-action" onclick="alert('Calling Technician S. Manickam: +91 98412 88219')">Contact Tech</button></td>
+          </tr>
+          <tr>
+            <td><strong style="font-family: monospace;">#SR-4810</strong></td>
+            <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Plumbing</span></td>
+            <td>Balcony drainage line inspection after monsoon shower.</td>
+            <td>28 Sep 2026</td>
+            <td><strong>K. Raman</strong><small>Rentora Verified</small></td>
+            <td><span class="status status-resolved">Resolved</span></td>
+            <td><button class="secondary-button small-action" onclick="alert('Viewing closure signoff sheet')">Report PDF</button></td>
+          </tr>
+          <tr>
+            <td><strong style="font-family: monospace;">#SR-4695</strong></td>
+            <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Electrical</span></td>
+            <td>Modular kitchen LED strip illumination replacement.</td>
+            <td>14 Aug 2026</td>
+            <td><strong>P. Vignesh</strong><small>Rentora Verified</small></td>
+            <td><span class="status status-resolved">Resolved</span></td>
+            <td><button class="secondary-button small-action" onclick="alert('Viewing closure signoff sheet')">Report PDF</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 8. VIEW: RENTAL HISTORY & HOMES (Past Tenancies) -->
+<section class="page-view" id="view-rentals">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">RESIDENTIAL TIMELINE</p>
+      <h1>Rental History & Past Homes</h1>
+      <p class="page-subtitle">Track every property you have lived in with Rentora, lease terms, and full security deposit refunds.</p>
+    </div>
+  </div>
+
+  <div class="property-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 24px;">
+    <!-- Active Current Home -->
+    <article class="property-card" style="border: 2px solid var(--green);">
+      <div class="property-image">
+        <img src="assets/twilight-luxury-apartment.png" alt="Modern Family Apartment">
+        <span class="property-badge" style="background: var(--green); color: white;">CURRENT RESIDENCE</span>
+      </div>
+      <div class="property-content">
+        <div class="property-title-row">
+          <h3>Modern Family Apartment</h3>
+          <span class="property-price">₹24,000 <small>/ mo</small></span>
+        </div>
+        <p class="property-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Tower B, Flat 3B, Anna Nagar, Chennai</p>
+        <div class="property-meta">
+          <span>3 BHK</span><span>2 Baths</span><span>1,250 sq.ft.</span>
+        </div>
+        <div style="margin: 10px 0 14px; font-size: 11px; color: var(--muted); line-height: 1.5;">
+          <strong>Lease Tenancy:</strong> Nov 2025 – Oct 2026 (11 Months)<br>
+          <strong>Escrow Deposit:</strong> ₹72,000 (Protected & Active)<br>
+          <strong>Rental Status:</strong> Up-to-date with 12 on-time remittances
+        </div>
+        <div class="property-card-bottom">
+          <span class="status status-resolved">Active Tenancy</span>
+          <button class="primary-button" style="padding: 7px 12px; font-size: 10px;" id="openLeaseModalBtn">View Lease</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Past Prior Home -->
+    <article class="property-card" style="opacity: 0.95;">
+      <div class="property-image">
+        <img src="assets/modern-luxury-villa.jpg" alt="Greenwood Residency Villa">
+        <span class="property-badge" style="background: #eef2ef; color: var(--muted);">PREVIOUS HOME (2024 - 2025)</span>
+      </div>
+      <div class="property-content">
+        <div class="property-title-row">
+          <h3>Greenwood Residency Villa</h3>
+          <span class="property-price" style="color: var(--muted);">₹21,000 <small>/ mo</small></span>
+        </div>
+        <p class="property-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Mogappair West, Chennai</p>
+        <div class="property-meta">
+          <span>2 BHK</span><span>2 Baths</span><span>1,100 sq.ft.</span>
+        </div>
+        <div style="margin: 10px 0 14px; font-size: 11px; color: var(--muted); line-height: 1.5;">
+          <strong>Stay Duration:</strong> Oct 2024 – Oct 2025 (12 Months)<br>
+          <strong>Deposit Cleared:</strong> ₹63,000 refunded in full via NEFT<br>
+          <strong>Landlord Rating:</strong> 5.0 / 5.0 (Exemplary Tenant Certificate)
+        </div>
+        <div class="property-card-bottom">
+          <span class="status status-closed">Successfully Concluded</span>
+          <button class="secondary-button small-action" id="openNocModalBtn">NOC Certificate</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 9. VIEW: HOUSING PREFERENCES & PROFILE CONFIG -->
+<section class="page-view" id="view-preferences">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">TAILORED RECOMMENDATIONS</p>
+      <h1>Housing Preferences & Criteria</h1>
+      <p class="page-subtitle">Configure your ideal home criteria so Rentora matches upcoming residences before public release.</p>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <span class="status status-resolved" style="font-size: 11px; padding: 8px 12px;">AI Match Active: 98% Precision</span>
+    </div>
+  </div>
+
+  <div class="profile-layout" style="grid-template-columns: minmax(280px, 1fr) minmax(0, 1.7fr); gap: 20px;">
+    <!-- Live Match Profile Card -->
+    <div class="panel profile-card" style="border: 1px solid var(--line); box-shadow: var(--shadow);">
+      <div class="profile-cover" style="height: 120px; background: linear-gradient(135deg, #163628 0%, #28774f 100%); padding: 18px; color: white; display: flex; flex-direction: column; justify-content: flex-end;">
+        <span style="font-size: 9px; letter-spacing: 1.4px; font-weight: 800; color: #8ed2b1;">RENTORA MATCH MATRIX</span>
+        <h2 style="font-family: Manrope, sans-serif; font-size: 18px; margin: 4px 0 0; color: white;">Your Ideal Home Profile</h2>
+      </div>
+      <div style="padding: 20px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line);">
+          <div>
+            <strong style="font-size: 12px; color: var(--navy); display: block;">Matching Score</strong>
+            <small style="font-size: 10px; color: var(--muted);">Calibrated for Chennai & Coimbatore</small>
+          </div>
+          <span style="font-size: 20px; font-weight: 800; font-family: Manrope, sans-serif; color: #28794f;">98%</span>
+        </div>
+
+        <div style="display: grid; gap: 11px;">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>Target Localities</span>
+            <strong id="prefLocSummary" style="color: var(--navy);">Anna Nagar, Besant Nagar</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Budget Cap</span>
+            <strong id="prefBudgetSummary" style="color: #28794f;">Up to ₹45,000 / mo</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Configuration</span>
+            <strong id="prefBedsSummary" style="color: var(--navy);">3 BHK Apartment</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Parking</span>
+            <strong style="color: var(--navy);">Covered Car + Bike</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Pet Friendly</span>
+            <strong style="color: var(--navy);">Yes (Cats / Dogs)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0;">
+            <span style="color: var(--muted);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px;margin-right:5px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>Move-In Window</span>
+            <strong style="color: #c48b26;">November 2026</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; padding: 12px; background: #eaf5ee; border-radius: 9px; border: 1px solid #d0ebd8; display: flex; gap: 9px; align-items: center;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#28794f" stroke-width="2" style="flex-shrink: 0;"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+          <p style="font-size: 10px; margin: 0; color: #235d3f; line-height: 1.5;"><strong>Priority Match Alert:</strong> Instant WhatsApp ping whenever verified owner properties enter this bracket.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Preferences Form -->
+    <div class="panel" style="padding: 26px 28px; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); border-radius: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--line);">
+        <div>
+          <h2 style="font-family: Manrope, sans-serif; font-size: 17px; margin: 0 0 5px; color: var(--navy); font-weight: 800;">Customize Relocation Preferences</h2>
+          <p style="font-size: 12px; color: var(--muted); margin: 0;">Tailor your search criteria so Rentora curates and matches properties before public release.</p>
+        </div>
+        <span class="edit-tag" style="padding: 5px 10px; font-weight: 700;">Live Criteria</span>
+      </div>
+
+      <form id="preferencesForm" class="pref-form-clean">
+        <div class="pref-form-grid">
+          <div class="pref-form-field">
+            <label for="prefNeighborhood">Target Neighborhoods</label>
+            <input type="text" id="prefNeighborhood" value="Anna Nagar, Besant Nagar, Alwarpet" placeholder="e.g. Anna Nagar, Adyar, Indiranagar">
+          </div>
+
+          <div class="pref-form-field">
+            <label for="prefBudget">Maximum Monthly Rent (₹)</label>
+            <input type="number" id="prefBudget" value="45000" placeholder="e.g. 45000" step="1000">
+          </div>
+
+          <div class="pref-form-field">
+            <label for="prefBeds">Bedrooms Configuration</label>
+            <select id="prefBeds">
+              <option value="1 BHK">1 BHK Studio</option>
+              <option value="2 BHK">2 BHK Apartment</option>
+              <option value="3 BHK" selected>3 BHK Luxury Apartment</option>
+              <option value="4+ BHK Villa">4+ BHK Independent Villa</option>
+            </select>
+          </div>
+
+          <div class="pref-form-field">
+            <label for="prefParking">Parking Requirement</label>
+            <select id="prefParking">
+              <option selected>1 Covered Car Park + Bike</option>
+              <option>2 Covered Car Parks</option>
+              <option>Open Dedicated Slot</option>
+              <option>Street Parking Okay</option>
+            </select>
+          </div>
+
+          <div class="pref-form-field">
+            <label for="prefFurnishing">Furnishing Status</label>
+            <select id="prefFurnishing">
+              <option selected>Semi-Furnished (Wardrobes + Modular Kitchen)</option>
+              <option>Fully Furnished (Turnkey Ready)</option>
+              <option>Unfurnished</option>
+            </select>
+          </div>
+
+          <div class="pref-form-field">
+            <label for="prefPets">Pet Policy Preference</label>
+            <select id="prefPets">
+              <option selected>Pet-Friendly (Cats & Dogs Welcome)</option>
+              <option>No Pets</option>
+            </select>
+          </div>
+
+          <div class="pref-form-field full-width">
+            <label for="prefNotes">Special Amenities & Tenant Requirements</label>
+            <textarea id="prefNotes" rows="3" placeholder="e.g. Higher floor (5th+), east facing balcony, 24/7 DG power backup, dedicated EV charging dock.">Prefer high floor (5th floor or above) with morning sunlight and dedicated EV charger provision.</textarea>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 12px;">
+          <span class="form-hint" style="max-width: 60%; font-size: 11px; color: var(--muted); line-height: 1.5;">Preferences sync across your Rentora account and automatically filter priority tenant matches.</span>
+          <button type="submit" class="primary-button" style="padding: 11px 22px; font-size: 12px; font-weight: 700; border-radius: 9px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Save Preferences</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</div></main></div>
+
+<!-- MODAL: LEASE AGREEMENT POPUP -->
+<div class="modal-backdrop" id="leaseModal" role="dialog" aria-modal="true" aria-labelledby="leaseModalTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="closeLeaseModalBtn" type="button" aria-label="Close modal">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-kicker">REGISTERED LEASE AGREEMENT</div>
+    <h2 id="leaseModalTitle">Tenancy Agreement #LS-2025-109</h2>
+    <p>Legally executed residential rental contract between Landlord and Resident User under NeSL digital e-stamping.</p>
+
+    <div class="modal-sheet">
+      <div class="modal-sheet-row">
+        <span>Premises:</span>
+        <strong>Modern Family Apartment (Flat 3B, Tower B, Anna Nagar, Chennai)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Tenure:</span>
+        <strong>01 Nov 2025 – 31 Oct 2026 (11 Months)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Monthly Rent:</span>
+        <strong style="color: #28794f;">₹24,000 / month (Due on 15th)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Security Escrow Deposit:</span>
+        <strong>₹72,000 (ICICI Trustee Account Secured)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Notice Period:</span>
+        <strong>1 Month Written Notice</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Digital Stamp Duty:</span>
+        <strong>e-Stamp TN-08942-ST (NeSL Validated)</strong>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="secondary-button" id="closeLeaseModalAction" type="button">Close</button>
+      <button class="primary-button" type="button" onclick="alert('Downloading Tenancy Agreement #LS-2025-109 PDF with Digital Signatures...')">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download PDF</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: NOC CERTIFICATE POPUP -->
+<div class="modal-backdrop" id="nocModal" role="dialog" aria-modal="true" aria-labelledby="nocModalTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="closeNocModalBtn" type="button" aria-label="Close modal">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-kicker">TENANCY CLEARANCE & NOC</div>
+    <h2 id="nocModalTitle">No Objection Certificate (NOC)</h2>
+    <p>Official clearance certification issued upon successful handover and full security deposit settlement.</p>
+
+    <div class="modal-sheet">
+      <div class="modal-sheet-row">
+        <span>Previous Property:</span>
+        <strong>Greenwood Residency Villa, Mogappair West, Chennai</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Lease Duration:</span>
+        <strong>Oct 2024 – Oct 2025 (12 Months Completed)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Deposit Refund Status:</span>
+        <strong style="color: #28794f;">100% Refunded (₹63,000 via NEFT)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Electricity & Utility Dues:</span>
+        <strong>Zero Pending Dues (TNEB Cleared)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Property Condition:</span>
+        <strong>Handover Pass (100% Exemplary Inspection)</strong>
+      </div>
+      <div class="modal-sheet-row">
+        <span>Landlord Recommendation:</span>
+        <strong>Certified 5.0 / 5.0 Star Tenant</strong>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="secondary-button" id="closeNocModalAction" type="button">Close</button>
+      <button class="primary-button" type="button" onclick="alert('Downloading Official Landlord NOC Certificate PDF...')">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download NOC PDF</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>

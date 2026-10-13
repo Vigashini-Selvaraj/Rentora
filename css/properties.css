@@ -1,0 +1,1151 @@
+/* ==========================================================================
+   Rentora Properties Page Styles
+   ========================================================================== */
+
+:root {
+  --prop-ink: var(--navy, #102a36);
+  --prop-muted: var(--muted, #66777e);
+  --prop-paper: var(--paper, #ffffff);
+  --prop-soft: var(--soft, #f5f8f6);
+  --prop-line: var(--line, #e3ebe6);
+  --prop-card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --prop-ink: #f0fdf4;
+  --prop-muted: #94a3b8;
+  --prop-paper: #0b1c24;
+  --prop-soft: #0e232d;
+  --prop-card-bg: #122a36;
+  --prop-line: rgba(255, 255, 255, 0.12);
+}
+
+.prop-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Hero Section: Full-Width Cinematic Twilight House with Centered 4-Field Search
+   ========================================================================== */
+.prop-hero-luxury {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-block: 105px 75px;
+  color: #ffffff;
+  background: #09151c;
+}
+
+.prop-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.prop-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  transform: scale(1.0);
+  filter: brightness(1.06) contrast(1.05) saturate(1.15);
+  animation: propHeroZoom 24s ease-in-out infinite alternate;
+}
+
+@keyframes propHeroZoom {
+  0% { transform: scale(1.0) translate(0, 0); }
+  50% { transform: scale(1.04) translate(-0.8%, -0.6%); }
+  100% { transform: scale(1.02) translate(0.6%, 0.4%); }
+}
+
+.prop-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Balanced sunset gradient so the villa, warm glass lights, and pool remain clear */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 20, 26, 0.45) 0%,
+    rgba(12, 24, 32, 0.55) 42%,
+    rgba(9, 18, 24, 0.82) 80%,
+    rgba(8, 16, 21, 0.95) 100%
+  );
+  backdrop-filter: blur(0px);
+}
+
+.prop-hero-shell {
+  position: relative;
+  z-index: 2;
+}
+
+.prop-hero-center {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Badge */
+.prop-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #bbf7d0;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.prop-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  animation: propDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes propDotPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35); }
+  50% { transform: scale(1.25); box-shadow: 0 0 0 7px rgba(52, 211, 153, 0.15); }
+}
+
+/* Headline */
+.prop-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5.2vw, 68px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0 0 20px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
+}
+
+.prop-hero-title span {
+  background: linear-gradient(110deg, #6ee7b7 0%, #34d399 50%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.prop-hero-desc {
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #f1f5f9;
+  margin: 0 auto 36px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* 4-Field Hero Quick Search Bar */
+.prop-hero-search-bar {
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  padding: 10px 12px 10px 24px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.3);
+  gap: 16px;
+  color: var(--ink);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.prop-hero-search-bar:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45), 0 0 0 2px var(--green);
+}
+
+[data-theme="dark"] .prop-hero-search-bar {
+  background: rgba(18, 36, 46, 0.94);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+}
+
+.prop-search-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  text-align: left;
+}
+
+.prop-search-field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .prop-search-field label {
+  color: #94a3b8;
+}
+
+.prop-search-field label svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.prop-search-field input,
+.prop-search-field select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .prop-search-field input,
+[data-theme="dark"] .prop-search-field select {
+  color: #f8fafc;
+}
+
+.prop-search-field select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+[data-theme="dark"] .prop-search-field select option {
+  background: #0f232c;
+  color: #f8fafc;
+}
+
+.prop-field-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .prop-field-divider {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.prop-search-action-btn {
+  border-radius: 12px;
+  padding: 0 24px;
+  height: 52px;
+  gap: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(45, 138, 104, 0.4);
+}
+
+.prop-search-action-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+/* Hero Stats Chips */
+.prop-hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+.prop-stat-chip {
+  background: rgba(15, 27, 34, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 12px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prop-stat-chip strong {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Dual-Heading (Black/White + Vibrant Green)
+   ========================================================================== */
+.dual-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.8vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--navy);
+  margin-bottom: 0;
+}
+
+[data-theme="dark"] .dual-heading {
+  color: #f1f5f9;
+}
+
+.dual-heading .text-green,
+.text-green {
+  color: var(--green) !important;
+  display: inline;
+}
+
+[data-theme="dark"] .dual-heading .text-green,
+[data-theme="dark"] .text-green {
+  color: #34d399 !important;
+}
+
+.text-green-light {
+  color: #a7f3d0 !important;
+}
+
+/* ==========================================================================
+   Property Listings Grid Section
+   ========================================================================== */
+.prop-grid-section {
+  padding: 85px 0 100px;
+  background: var(--prop-paper);
+}
+
+.prop-section-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.prop-section-sub {
+  max-width: 480px;
+  color: var(--prop-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Filter Strip */
+.prop-filter-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.prop-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.prop-tab {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--prop-line);
+  background: var(--prop-card-bg);
+  color: var(--prop-muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.prop-tab:hover,
+.prop-tab.active {
+  background: var(--green);
+  color: #ffffff;
+  border-color: var(--green);
+  box-shadow: 0 4px 14px rgba(45, 138, 104, 0.3);
+}
+
+.prop-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid var(--prop-line);
+  border-radius: 30px;
+  background: var(--prop-card-bg);
+  min-width: 300px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prop-search-box:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--mint);
+}
+
+.prop-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--prop-ink);
+  width: 100%;
+}
+
+.prop-search-box svg {
+  width: 18px;
+  height: 18px;
+  color: var(--prop-muted);
+  flex-shrink: 0;
+}
+
+.prop-count-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--prop-line);
+  color: var(--prop-muted);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.prop-count-num {
+  color: var(--prop-ink);
+  font-weight: 800;
+}
+
+/* Property Grid */
+.prop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.prop-card {
+  background: var(--prop-card-bg);
+  border: 1px solid var(--prop-line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(16, 42, 54, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.prop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(16, 42, 54, 0.12);
+  border-color: rgba(45, 138, 104, 0.45);
+}
+
+.prop-card-media {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.prop-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prop-card:hover .prop-card-media img {
+  transform: scale(1.06);
+}
+
+.prop-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(16, 42, 54, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.1em;
+}
+
+.prop-badge.featured {
+  background: var(--green);
+}
+
+.prop-price {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(16, 42, 54, 0.88);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+
+.prop-price small {
+  font-size: 11px;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+.prop-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.prop-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.prop-location svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.prop-card h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.prop-card h3 a {
+  color: var(--prop-ink);
+  transition: color 0.2s ease;
+}
+
+.prop-card h3 a:hover {
+  color: var(--green);
+}
+
+.prop-card p {
+  color: var(--prop-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+
+.prop-amenities {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--prop-line);
+}
+
+.prop-amenity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--prop-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.prop-amenity svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 1.8;
+  flex-shrink: 0;
+}
+
+.prop-card-footer {
+  padding: 16px 24px;
+  background: var(--prop-soft);
+  border-top: 1px solid var(--prop-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prop-furnish-tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--green);
+  background: var(--mint);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+[data-theme="dark"] .prop-furnish-tag {
+  color: #6ee7b7;
+}
+
+.prop-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green);
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.prop-view-btn:hover {
+  color: var(--green-dark);
+  transform: translateX(3px);
+}
+
+.prop-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--prop-soft);
+  border-radius: 14px;
+  border: 1px dashed var(--prop-line);
+}
+
+.prop-no-results h4 {
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: var(--prop-ink);
+}
+
+.prop-no-results p {
+  color: var(--prop-muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Section 2: What Differs Us (The Rentora Standard)
+   ========================================================================== */
+.diff-section {
+  padding: 95px 0;
+  background: var(--prop-soft);
+  border-top: 1px solid var(--prop-line);
+  border-bottom: 1px solid var(--prop-line);
+}
+
+.diff-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 52px;
+}
+
+.diff-header h2 {
+  margin: 8px 0 14px;
+}
+
+.diff-header p {
+  color: var(--prop-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.diff-card {
+  padding: 34px 26px;
+  border-radius: 16px;
+  border: 1px solid var(--prop-line);
+  background: var(--prop-card-bg);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.diff-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--green);
+  box-shadow: 0 18px 40px rgba(16, 42, 54, 0.1);
+}
+
+.diff-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--mint);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+}
+
+[data-theme="dark"] .diff-icon-box {
+  color: #6ee7b7;
+}
+
+.diff-icon-box svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.diff-card h3 {
+  font-size: 18px;
+  margin: 0 0 12px;
+  color: var(--prop-ink);
+  font-weight: 700;
+}
+
+.diff-card p {
+  color: var(--prop-muted);
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Section 3: Top Neighborhoods & City Climate / Requirements Explorer
+   ========================================================================== */
+.neighborhood-section {
+  padding: 95px 0;
+  background: var(--prop-paper);
+}
+
+.neighborhood-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.neighborhood-subtext {
+  color: var(--prop-muted);
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.neighborhood-nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.neighborhood-nav-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--prop-line);
+  background: var(--prop-card-bg);
+  color: var(--prop-muted);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.neighborhood-nav-btn:hover,
+.neighborhood-nav-btn.active {
+  background: var(--green);
+  color: #ffffff;
+  border-color: var(--green);
+  box-shadow: 0 4px 16px rgba(45, 138, 104, 0.35);
+}
+
+/* City Insight Panel */
+.city-insight-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 36px;
+  background: var(--prop-soft);
+  border: 1px solid var(--prop-line);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 52px;
+  box-shadow: 0 12px 36px rgba(16, 42, 54, 0.05);
+}
+
+.city-media-side {
+  position: relative;
+  min-height: 380px;
+}
+
+.city-media-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.city-media-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(16, 42, 54, 0.88);
+  backdrop-filter: blur(10px);
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: #ffffff;
+}
+
+.city-media-badge strong {
+  display: block;
+  font-size: 16px;
+  font-family: var(--font-heading);
+}
+
+.city-media-badge span {
+  font-size: 12px;
+  color: #6ee7b7;
+}
+
+.city-details-side {
+  padding: 38px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.city-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.city-title-row h3 {
+  font-size: 22px;
+  color: var(--prop-ink);
+  margin: 0;
+  font-family: var(--font-heading);
+}
+
+.city-climate-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--mint);
+  color: #1f6b4d;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+[data-theme="dark"] .city-climate-pill {
+  color: #6ee7b7;
+}
+
+.city-climate-pill svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.city-details-side > p {
+  color: var(--prop-muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0 0 24px;
+}
+
+.city-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 26px;
+  border-top: 1px solid var(--prop-line);
+  padding-top: 22px;
+}
+
+.city-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.city-spec-item strong {
+  font-size: 13px;
+  color: var(--prop-ink);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.neighborhood-filter-action {
+  width: fit-content;
+}
+
+/* Visual Neighborhood Cards Below */
+.neighborhood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.neighborhood-card {
+  position: relative;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.neighborhood-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.neighborhood-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 43, 58, 0.15) 0%, rgba(10, 26, 34, 0.88) 100%);
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.neighborhood-card:hover img {
+  transform: scale(1.08);
+}
+
+.neighborhood-card:hover::after {
+  opacity: 0.95;
+}
+
+.neighborhood-info {
+  position: relative;
+  z-index: 3;
+}
+
+.neighborhood-info strong {
+  font: 800 21px var(--font-heading);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.neighborhood-info span {
+  font-size: 12px;
+  color: #a7f3d0;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+/* ==========================================================================
+   Section 4: Rental Process Strip
+   ========================================================================== */
+.prop-steps-section {
+  padding: 95px 0;
+  background: var(--prop-soft);
+  border-top: 1px solid var(--prop-line);
+}
+
+.prop-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.prop-step-item {
+  position: relative;
+  padding: 34px 28px;
+  border-radius: 16px;
+  border: 1px solid var(--prop-line);
+  background: var(--prop-card-bg);
+  box-shadow: 0 8px 24px rgba(16, 42, 54, 0.04);
+}
+
+.prop-step-num {
+  font: 800 32px var(--font-heading);
+  color: var(--green);
+  margin-bottom: 14px;
+  letter-spacing: -1px;
+}
+
+.prop-step-item h3 {
+  font-size: 19px;
+  color: var(--prop-ink);
+  margin: 0 0 12px;
+}
+
+.prop-step-item p {
+  color: var(--prop-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Section 5: Properties CTA Banner
+   ========================================================================== */
+.prop-cta-banner {
+  padding: 68px 0;
+  background: #0d212b;
+  color: #fff;
+  border-radius: 24px;
+  margin: 0 auto 90px;
+  width: min(1180px, calc(100% - 48px));
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(10, 24, 32, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.prop-cta-inner {
+  padding: 0 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.prop-cta-content h2 {
+  font-size: clamp(28px, 3.4vw, 42px);
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+}
+
+.prop-cta-content p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 15px;
+  max-width: 540px;
+  line-height: 1.75;
+}
+
+.prop-cta-btn {
+  font-size: 14px;
+  padding: 0 28px;
+  min-height: 52px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .prop-hero-search-bar {
+    flex-wrap: wrap;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 14px;
+  }
+  .prop-search-field {
+    flex: 1 1 calc(50% - 14px);
+  }
+  .prop-field-divider {
+    display: none;
+  }
+  .prop-search-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .prop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .diff-grid,
+  .neighborhood-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .city-insight-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .prop-hero-luxury {
+    padding-block: 80px 55px;
+    min-height: 600px;
+  }
+  .prop-hero-title {
+    font-size: clamp(34px, 8.5vw, 48px);
+  }
+  .prop-search-field {
+    flex: 1 1 100%;
+  }
+  .prop-grid,
+  .diff-grid,
+  .neighborhood-grid,
+  .prop-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .city-specs-grid {
+    grid-template-columns: 1fr;
+  }
+  .prop-cta-inner {
+    padding: 0 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .prop-filter-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .prop-search-box {
+    width: 100%;
+  }
+}

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore featured rental properties, luxury apartments, and residential homes managed by Rentora.">
+  <title>Properties | Rentora Property Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/properties.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/properties.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="navbar"></div>
+
+  <main id="main">
+    <!-- Hero Section: Full-Width Cinematic House Background with Centered Content & 4-Field Search Bar -->
+    <section class="prop-hero-luxury" aria-label="Find Your Perfect Home Hero">
+      <div class="prop-hero-bg">
+        <img class="prop-hero-img" src="assets/properties-luxury-hero.jpg" alt="Luxury modern villa illuminated at twilight" loading="eager">
+        <div class="prop-hero-overlay"></div>
+      </div>
+
+      <div class="prop-shell prop-hero-shell">
+        <div class="prop-hero-center">
+          <div class="prop-hero-badge">
+            <span class="prop-badge-dot"></span>
+            <span>CURATED RESIDENTIAL & COMMERCIAL PORTFOLIO</span>
+          </div>
+
+          <h1 class="prop-hero-title">
+            Find your <span class="text-green">perfect home.</span>
+          </h1>
+
+          <p class="prop-hero-desc">
+            Discover the best rental properties in your desired location. Verified listings, direct owner connect, transparent agreements, and zero broker hassle.
+          </p>
+
+          <!-- 4-Field Hero Search Bar -->
+          <form class="prop-hero-search-bar" role="search" aria-label="Search rental properties" onsubmit="return false;">
+            <!-- Field 1: Location -->
+            <div class="prop-search-field">
+              <label for="prop-hero-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Location</span>
+              </label>
+              <input type="text" id="prop-hero-location" placeholder="City or neighborhood..." aria-label="Location">
+            </div>
+
+            <div class="prop-field-divider"></div>
+
+            <!-- Field 2: Property Type -->
+            <div class="prop-search-field">
+              <label for="prop-hero-type">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span>Property Type</span>
+              </label>
+              <select id="prop-hero-type" aria-label="Property Type">
+                <option value="all" selected>All Types</option>
+                <option value="apartment">Apartment</option>
+                <option value="villa">Luxury Villa</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="commercial">Commercial</option>
+                <option value="studio">Modern Studio</option>
+              </select>
+            </div>
+
+            <div class="prop-field-divider"></div>
+
+            <!-- Field 3: Furnishing Status -->
+            <div class="prop-search-field">
+              <label for="prop-hero-furnishing">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/></svg>
+                <span>Furnishing Status</span>
+              </label>
+              <select id="prop-hero-furnishing" aria-label="Furnishing Status">
+                <option value="any" selected>Any Status</option>
+                <option value="furnished">Fully Furnished</option>
+                <option value="semi-furnished">Semi Furnished</option>
+                <option value="unfurnished">Unfurnished</option>
+              </select>
+            </div>
+
+            <div class="prop-field-divider"></div>
+
+            <!-- Field 4: Budget Range -->
+            <div class="prop-search-field">
+              <label for="prop-hero-budget">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Budget Range</span>
+              </label>
+              <select id="prop-hero-budget" aria-label="Budget Range">
+                <option value="any" selected>Any Price</option>
+                <option value="under-40">Under ₹40,000 / mo</option>
+                <option value="40-75">₹40,000 - ₹75,000 / mo</option>
+                <option value="75-120">₹75,000 - ₹1,20,000 / mo</option>
+                <option value="120-plus">₹1,20,000+ / mo</option>
+              </select>
+            </div>
+
+            <!-- Action Button -->
+            <button type="button" id="prop-hero-search-btn" class="button button-primary prop-search-action-btn">
+              <span>Search Properties</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+          </form>
+
+          <!-- Proof Metrics Bar -->
+          <div class="prop-hero-stats">
+            <div class="prop-stat-chip">
+              <strong>1,200+</strong> <span>Active Listings</span>
+            </div>
+            <div class="prop-stat-chip">
+              <strong>100%</strong> <span>Owner Verified</span>
+            </div>
+            <div class="prop-stat-chip">
+              <strong>₹0</strong> <span>Brokerage Fees</span>
+            </div>
+            <div class="prop-stat-chip">
+              <strong>4.9/5</strong> <span>Resident Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Property Grid Section -->
+    <section class="prop-grid-section" id="property-listings">
+      <div class="prop-shell">
+        <div class="prop-section-top">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> AVAILABLE HOMES</p>
+            <h2 class="dual-heading">Featured rental <span class="text-green">properties.</span></h2>
+          </div>
+          <p class="prop-section-sub">Explore hand-picked residential apartments, penthouses, and private estates available for immediate move-in.</p>
+        </div>
+
+        <div class="prop-filter-strip">
+          <div class="prop-tabs" role="tablist" aria-label="Property categories">
+            <button class="prop-tab active" type="button" data-filter="all">All Properties</button>
+            <button class="prop-tab" type="button" data-filter="apartment">Apartments</button>
+            <button class="prop-tab" type="button" data-filter="villa">Villas</button>
+            <button class="prop-tab" type="button" data-filter="penthouse">Penthouses</button>
+            <button class="prop-tab" type="button" data-filter="commercial">Commercial</button>
+            <button class="prop-tab" type="button" data-filter="studio">Studio</button>
+          </div>
+          <div class="prop-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Filter by neighborhood or keyword..." aria-label="Filter properties">
+          </div>
+        </div>
+
+        <div class="prop-count-bar">
+          <span>Showing <strong class="prop-count-num">9</strong> available rental spaces</span>
+          <span>Verified listings with direct owner contact</span>
+        </div>
+
+        <div class="prop-grid">
+          <!-- Property 1 -->
+          <article class="prop-card" data-category="apartment" data-furnishing="furnished" data-price="45000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=grandview">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="The Grandview Residences">
+              </a>
+              <span class="prop-badge featured">FEATURED</span>
+              <span class="prop-price">₹45,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Koramangala, Bangalore</span>
+              </span>
+              <h3><a href="property-detail.html?id=grandview">The Grandview Residences</a></h3>
+              <p>Contemporary 2-bedroom residence featuring expansive floor-to-ceiling windows, smart home automation, and timber balconies.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>2 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>2 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>1,280 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Fully Furnished</span>
+              <a href="property-detail.html?id=grandview" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 2 -->
+          <article class="prop-card" data-category="villa" data-furnishing="semi-furnished" data-price="85000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=serene-palms">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Serene Palms Villa">
+              </a>
+              <span class="prop-badge">AVAILABLE</span>
+              <span class="prop-price">₹85,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Jubilee Hills, Hyderabad</span>
+              </span>
+              <h3><a href="property-detail.html?id=serene-palms">Serene Palms Villa</a></h3>
+              <p>Spacious gated villa with private landscaped garden, multi-car parking, and integrated 24/7 security management.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>4 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>3 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>2,650 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Semi Furnished</span>
+              <a href="property-detail.html?id=serene-palms" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 3 -->
+          <article class="prop-card" data-category="studio" data-furnishing="furnished" data-price="38000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=skyline-loft">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Skyline Urban Loft">
+              </a>
+              <span class="prop-badge featured">VERIFIED</span>
+              <span class="prop-price">₹38,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Bandra West, Mumbai</span>
+              </span>
+              <h3><a href="property-detail.html?id=skyline-loft">Skyline Urban Loft</a></h3>
+              <p>Minimalist open-plan loft in prime metropolitan corridor with dedicated ergonomic workstation and sea breeze terrace.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>1 Bed</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>1 Bath</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>840 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Fully Furnished</span>
+              <a href="property-detail.html?id=skyline-loft" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 4 -->
+          <article class="prop-card" data-category="apartment" data-furnishing="furnished" data-price="62000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=oakwood-suites">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Oakwood Executive Suites">
+              </a>
+              <span class="prop-badge">AVAILABLE</span>
+              <span class="prop-price">₹62,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Cyber City, Gurugram</span>
+              </span>
+              <h3><a href="property-detail.html?id=oakwood-suites">Oakwood Executive Suites</a></h3>
+              <p>Executive suite with high-speed fiber connectivity, clubhouse membership, infinity swimming pool, and 24/7 concierge.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>3 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>2 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>1,750 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Fully Furnished</span>
+              <a href="property-detail.html?id=oakwood-suites" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 5 -->
+          <article class="prop-card" data-category="penthouse" data-furnishing="furnished" data-price="120000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=waterside-penthouse">
+                <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="The Waterside Penthouse">
+              </a>
+              <span class="prop-badge featured">LUXURY</span>
+              <span class="prop-price">₹1,20,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Marine Drive, Kochi</span>
+              </span>
+              <h3><a href="property-detail.html?id=waterside-penthouse">The Waterside Penthouse</a></h3>
+              <p>Panoramic ocean horizon vistas, custom Italian marble kitchen fittings, expansive entertainment terrace, and direct elevator access.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>4 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>4 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>3,200 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Fully Furnished</span>
+              <a href="property-detail.html?id=waterside-penthouse" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 6 -->
+          <article class="prop-card" data-category="apartment" data-furnishing="unfurnished" data-price="28000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=greenfield-flat">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Greenfield Garden Flat">
+              </a>
+              <span class="prop-badge">AVAILABLE</span>
+              <span class="prop-price">₹28,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Alwarpet, Chennai</span>
+              </span>
+              <h3><a href="property-detail.html?id=greenfield-flat">Greenfield Garden Flat</a></h3>
+              <p>Tranquil residential garden flat shaded by avenue trees, minutes from metro connectivity, cultural centers, and international schools.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>2 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>2 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>1,100 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Unfurnished</span>
+              <a href="property-detail.html?id=greenfield-flat" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 7 -->
+          <article class="prop-card" data-category="villa" data-furnishing="furnished" data-price="95000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=solarium-villa">
+                <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Solarium Sunset Villa">
+              </a>
+              <span class="prop-badge featured">VERIFIED</span>
+              <span class="prop-price">₹95,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>Whitefield, Bangalore</span>
+              </span>
+              <h3><a href="property-detail.html?id=solarium-villa">Solarium Sunset Villa</a></h3>
+              <p>Architect-designed solar-powered villa featuring private rooftop patio, automated climate controls, and EV fast-charging garage.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>4 Beds</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>4 Baths</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>3,100 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Fully Furnished</span>
+              <a href="property-detail.html?id=solarium-villa" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 8 -->
+          <article class="prop-card" data-category="commercial" data-furnishing="furnished" data-price="150000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=apex-hub">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Apex Commercial Tech Hub">
+              </a>
+              <span class="prop-badge">COMMERCIAL</span>
+              <span class="prop-price">₹1,50,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>BKC, Mumbai</span>
+              </span>
+              <h3><a href="property-detail.html?id=apex-hub">Apex Commercial Tech Hub</a></h3>
+              <p>Grade-A corporate office suite equipped with fiber infrastructure, acoustic meeting pods, biometric entry, and pantry lounge.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg>
+                  <span>40 Desks</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/></svg>
+                  <span>3 Cabins</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>2,400 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Plug &amp; Play</span>
+              <a href="property-detail.html?id=apex-hub" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Property 9 -->
+          <article class="prop-card" data-category="studio" data-furnishing="semi-furnished" data-price="34000">
+            <div class="prop-card-media">
+              <a href="property-detail.html?id=harbor-studio">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Harbor View Studio Penthouse">
+              </a>
+              <span class="prop-badge featured">AVAILABLE</span>
+              <span class="prop-price">₹34,000<small>/mo</small></span>
+            </div>
+            <div class="prop-card-body">
+              <span class="prop-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                <span>ECR Coastal Road, Chennai</span>
+              </span>
+              <h3><a href="property-detail.html?id=harbor-studio">Harbor View Studio Penthouse</a></h3>
+              <p>Chic coastal studio with skylight ceiling, designer kitchenette, fast wifi, and tranquil sea-breeze sun deck.</p>
+              <div class="prop-amenities">
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                  <span>1 Bed</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                  <span>1 Bath</span>
+                </span>
+                <span class="prop-amenity">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  <span>720 sqft</span>
+                </span>
+              </div>
+            </div>
+            <div class="prop-card-footer">
+              <span class="prop-furnish-tag">Semi Furnished</span>
+              <a href="property-detail.html?id=harbor-studio" class="prop-view-btn">Schedule Visit <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- No results placeholder -->
+          <div class="prop-no-results" style="display: none;">
+            <h4>No properties match your criteria</h4>
+            <p>Try clearing filters or switching category tabs to explore all available residences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: What Differs Us (The Rentora Standard) — Dual-Tone Headings & Strict SVG Icons -->
+    <section class="diff-section">
+      <div class="prop-shell">
+        <div class="diff-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> WHAT DIFFERS US</p>
+          <h2 class="dual-heading">The Rentora standard for <span class="text-green">tenants &amp; owners.</span></h2>
+          <p>We eliminated outdated rental hurdles and replaced them with verified listings, direct owner communication, and smooth digital processes.</p>
+        </div>
+
+        <div class="diff-grid">
+          <div class="diff-card">
+            <div class="diff-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>100% Verified Listings</h3>
+            <p>Every home and owner undergoes strict physical and documentation verification so you never encounter misleading ads or phantom units.</p>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <h3>Zero Hidden Brokerage</h3>
+            <p>Direct agreements with full price transparency. You pay exactly what is shown without hidden agency markups or inflated fees.</p>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3>Instant Digital Leases</h3>
+            <p>E-sign legally binding rental agreements, manage deposit escrows, and complete KYC verification in under 15 minutes online.</p>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>24/7 On-Demand Care</h3>
+            <p>Enjoy prompt maintenance support. From plumbing to electrical fixtures, log requests in our system with tracked resolution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Explore by Neighborhood & City Rental Insights -->
+    <section class="neighborhood-section" id="neighborhoods">
+      <div class="prop-shell">
+        <div class="neighborhood-header">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> PRIME LOCATIONS &amp; CLIMATE INSIGHTS</p>
+            <h2 class="dual-heading">Explore top rental <span class="text-green">neighborhoods.</span></h2>
+          </div>
+          <p class="neighborhood-subtext">Click any city to view local climate conditions, rental hotspots, and neighborhood requirements.</p>
+        </div>
+
+        <!-- City Navigation Tabs -->
+        <div class="neighborhood-nav-tabs">
+          <button class="neighborhood-nav-btn active" type="button" data-city="bangalore">Bangalore</button>
+          <button class="neighborhood-nav-btn" type="button" data-city="mumbai">Mumbai</button>
+          <button class="neighborhood-nav-btn" type="button" data-city="hyderabad">Hyderabad</button>
+          <button class="neighborhood-nav-btn" type="button" data-city="gurugram">Gurugram</button>
+        </div>
+
+        <!-- Detailed City Information Panels -->
+        <!-- Bangalore Panel (Active Default) -->
+        <div class="city-insight-panel active" id="city-bangalore">
+          <div class="city-media-side">
+            <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=900&q=80" alt="Bangalore cityscape and lush trees">
+            <div class="city-media-badge">
+              <strong>Bangalore Hub</strong>
+              <span>180+ Active Rentora Residences</span>
+            </div>
+          </div>
+          <div class="city-details-side">
+            <div class="city-title-row">
+              <h3>Bangalore: Silicon Valley of India</h3>
+              <span class="city-climate-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                Pleasant &amp; Temperate (18°C – 28°C)
+              </span>
+            </div>
+            <p>Known for its round-the-year pleasant weather, tree-lined boulevards, and booming startup corridor. Tech professionals thrive in neighborhoods connected by the Purple &amp; Green Metro lines.</p>
+
+            <div class="city-specs-grid">
+              <div class="city-spec-item">
+                <span class="spec-label">Top Rental Neighborhoods</span>
+                <strong>Koramangala, Indiranagar, HSR Layout, Whitefield</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Average 2BHK Rent</span>
+                <strong>₹35,000 – ₹55,000 / month</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Standard Deposit</span>
+                <strong>3 to 5 Months (Rentora Pre-negotiated)</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Key Requirements</span>
+                <strong>Employment ID, PAN Card, Digital KYC, Move-in Agreement</strong>
+              </div>
+            </div>
+
+            <div class="city-actions-row">
+              <button class="button button-primary neighborhood-filter-action" onclick="document.getElementById('prop-hero-location').value='Bangalore'; document.getElementById('prop-hero-search-btn').click();">
+                View Bangalore Properties <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mumbai Panel -->
+        <div class="city-insight-panel" id="city-mumbai" style="display: none;">
+          <div class="city-media-side">
+            <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80" alt="Mumbai coastal skyline">
+            <div class="city-media-badge">
+              <strong>Mumbai Coast</strong>
+              <span>140+ Active Rentora Residences</span>
+            </div>
+          </div>
+          <div class="city-details-side">
+            <div class="city-title-row">
+              <h3>Mumbai: Financial Capital &amp; Coastal Charm</h3>
+              <span class="city-climate-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                Coastal &amp; Humid (22°C – 34°C)
+              </span>
+            </div>
+            <p>Fast-paced cosmopolitan living with seaside promenades, historic Art Deco architecture, and world-class culinary avenues. Ideal for finance, media, and corporate leadership.</p>
+
+            <div class="city-specs-grid">
+              <div class="city-spec-item">
+                <span class="spec-label">Top Rental Neighborhoods</span>
+                <strong>Bandra West, Juhu, Lower Parel, Powai, BKC</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Average 2BHK Rent</span>
+                <strong>₹50,000 – ₹85,000 / month</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Standard Deposit</span>
+                <strong>3 to 4 Months (Zero Hidden Brokerage via Rentora)</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Key Requirements</span>
+                <strong>Police Verification NOC, Society Registration, KYC</strong>
+              </div>
+            </div>
+
+            <div class="city-actions-row">
+              <button class="button button-primary neighborhood-filter-action" onclick="document.getElementById('prop-hero-location').value='Mumbai'; document.getElementById('prop-hero-search-btn').click();">
+                View Mumbai Properties <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hyderabad Panel -->
+        <div class="city-insight-panel" id="city-hyderabad" style="display: none;">
+          <div class="city-media-side">
+            <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&q=80" alt="Hyderabad modern towers">
+            <div class="city-media-badge">
+              <strong>Hyderabad Tech</strong>
+              <span>95+ Active Rentora Residences</span>
+            </div>
+          </div>
+          <div class="city-details-side">
+            <div class="city-title-row">
+              <h3>Hyderabad: Heritage Meets High-Tech</h3>
+              <span class="city-climate-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+                Warm &amp; Dry (20°C – 32°C)
+              </span>
+            </div>
+            <p>Exceptional infrastructure with wide arterial expressways, modern gated societies, world-class biotech hubs, and lower cost of living compared to other Tier-1 metros.</p>
+
+            <div class="city-specs-grid">
+              <div class="city-spec-item">
+                <span class="spec-label">Top Rental Neighborhoods</span>
+                <strong>HITEC City, Gachibowli, Jubilee Hills, Kondapur</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Average 2BHK Rent</span>
+                <strong>₹28,000 – ₹45,000 / month</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Standard Deposit</span>
+                <strong>2 to 3 Months</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Key Requirements</span>
+                <strong>Official Work Order, Aadhaar Verification, Lease Agreement</strong>
+              </div>
+            </div>
+
+            <div class="city-actions-row">
+              <button class="button button-primary neighborhood-filter-action" onclick="document.getElementById('prop-hero-location').value='Hyderabad'; document.getElementById('prop-hero-search-btn').click();">
+                View Hyderabad Properties <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gurugram Panel -->
+        <div class="city-insight-panel" id="city-gurugram" style="display: none;">
+          <div class="city-media-side">
+            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=900&q=80" alt="Gurugram high rises">
+            <div class="city-media-badge">
+              <strong>Gurugram NCR</strong>
+              <span>110+ Active Rentora Residences</span>
+            </div>
+          </div>
+          <div class="city-details-side">
+            <div class="city-title-row">
+              <h3>Gurugram: Millennium City</h3>
+              <span class="city-climate-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                Continental Seasons (10°C – 36°C)
+              </span>
+            </div>
+            <p>Glittering skyline of multinational headquarters, premium condominium high-rises, golf-course avenues, and immediate airport proximity.</p>
+
+            <div class="city-specs-grid">
+              <div class="city-spec-item">
+                <span class="spec-label">Top Rental Neighborhoods</span>
+                <strong>DLF Phase 1-5, Golf Course Road, Cyber City, Sector 54</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Average 2BHK Rent</span>
+                <strong>₹40,000 – ₹70,000 / month</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Standard Deposit</span>
+                <strong>2 to 3 Months</strong>
+              </div>
+              <div class="city-spec-item">
+                <span class="spec-label">Key Requirements</span>
+                <strong>Corporate ID Card, Tenant Police Intimation, Digital Escrow</strong>
+              </div>
+            </div>
+
+            <div class="city-actions-row">
+              <button class="button button-primary neighborhood-filter-action" onclick="document.getElementById('prop-hero-location').value='Gurugram'; document.getElementById('prop-hero-search-btn').click();">
+                View Gurugram Properties <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual City Cards Grid Below -->
+        <div class="neighborhood-grid">
+          <a href="#property-listings" class="neighborhood-card" data-city="Bangalore">
+            <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80" alt="Bangalore">
+            <div class="neighborhood-info">
+              <strong>Bangalore</strong>
+              <span>180+ Active Listings • IT Hubs &amp; Gardens</span>
+            </div>
+          </a>
+
+          <a href="#property-listings" class="neighborhood-card" data-city="Mumbai">
+            <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80" alt="Mumbai">
+            <div class="neighborhood-info">
+              <strong>Mumbai</strong>
+              <span>140+ Active Listings • Coastal &amp; Luxury</span>
+            </div>
+          </a>
+
+          <a href="#property-listings" class="neighborhood-card" data-city="Hyderabad">
+            <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=600&q=80" alt="Hyderabad">
+            <div class="neighborhood-info">
+              <strong>Hyderabad</strong>
+              <span>95+ Active Listings • High-Rise Villas</span>
+            </div>
+          </a>
+
+          <a href="#property-listings" class="neighborhood-card" data-city="Gurugram">
+            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Gurugram">
+            <div class="neighborhood-info">
+              <strong>Gurugram</strong>
+              <span>110+ Active Listings • Corporate Enclaves</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: How Renting Works with Dual-Tone Heading -->
+    <section class="prop-steps-section">
+      <div class="prop-shell">
+        <div class="diff-header">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> SIMPLE WORKFLOW</p>
+          <h2 class="dual-heading">How renting works with <span class="text-green">Rentora.</span></h2>
+          <p>From initial discovery to getting your keys, experience the fastest and calmest way to settle into your next home.</p>
+        </div>
+
+        <div class="prop-steps-grid">
+          <div class="prop-step-item">
+            <div class="prop-step-num">01</div>
+            <h3>Discover &amp; Filter</h3>
+            <p>Explore high-resolution galleries, verified owner profiles, transparent rent ledgers, and curated listings across premier locations.</p>
+          </div>
+          <div class="prop-step-item">
+            <div class="prop-step-num">02</div>
+            <h3>Schedule a Guided Visit</h3>
+            <p>Pick a date and convenient time slot to tour the space in person or request an interactive virtual walkthrough with the manager.</p>
+          </div>
+          <div class="prop-step-item">
+            <div class="prop-step-num">03</div>
+            <h3>E-Sign &amp; Move In</h3>
+            <p>Finalize your legal rental agreement online, submit your security deposit with payment protection, and collect your keys seamlessly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Properties CTA Banner -->
+    <div class="prop-cta-banner">
+      <div class="prop-cta-inner">
+        <div class="prop-cta-content">
+          <p class="eyebrow" style="color: #6ee7b7;"><span class="eyebrow-dot" style="background:#6ee7b7;"></span> LOOKING FOR SOMETHING SPECIFIC?</p>
+          <h2>Let our rental advisors find your <span class="text-green-light">ideal space.</span></h2>
+          <p>Share your preferred location, budget, and move-in timeline. We'll curate personalized options directly for you within 24 hours.</p>
+        </div>
+        <a href="contact.html" class="button button-primary prop-cta-btn">Talk with our team <span>↗</span></a>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+</body>
+</html>

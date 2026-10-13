@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rentora | Admin Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+  <script src="js/admin-dashboard.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <!-- Standard Rentora Brand matching Navbar, Login, Register & Website -->
+      <a class="brand" href="index.html" aria-label="Rentora home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg>
+        </span>
+        <span class="brand-copy">
+          <strong>Rentora<span>.</span></strong>
+          <small>PROPERTY MANAGEMENT</small>
+        </span>
+      </a>
+
+      <div class="brand-preferences" aria-label="Display preferences">
+        <div class="direction-toggle" role="group" aria-label="Text direction">
+          <button type="button" class="preference-button direction-button active" data-direction="ltr" aria-pressed="true">LTR</button>
+          <button type="button" class="preference-button direction-button" data-direction="rtl" aria-pressed="false">RTL</button>
+        </div>
+        <button type="button" class="preference-button theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="theme-icon" id="themeIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </span>
+          <span id="themeLabel">Dark mode</span>
+        </button>
+      </div>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Admin navigation">
+        <button class="nav-item active" data-view="overview">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </span>
+          <span>Overview</span>
+        </button>
+        <button class="nav-item" data-view="properties">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg>
+          </span>
+          <span>Properties</span>
+          <span class="nav-count" id="navPropCount">24</span>
+        </button>
+        <button class="nav-item" data-view="enquiries">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <span>Enquiries</span>
+          <span class="nav-count new-count" id="navEnquiryCount">6</span>
+        </button>
+        <button class="nav-item" data-view="customers">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span>Customers</span>
+        </button>
+        <button class="nav-item" data-view="add-property">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </span>
+          <span>Add Property</span>
+        </button>
+      </nav>
+
+      <div class="workspace-label management-label">MANAGEMENT & FINANCE</div>
+      <nav class="side-nav" aria-label="Management navigation">
+        <button class="nav-item" data-view="payments">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </span>
+          <span>Transactions & Rent</span>
+          <span class="nav-count new-count" id="navPayCount">3 Pending</span>
+        </button>
+        <button class="nav-item" data-view="payouts">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </span>
+          <span>Owner Disbursals</span>
+        </button>
+        <button class="nav-item" data-view="leases">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
+          <span>Leases & Escrow</span>
+        </button>
+        <button class="nav-item" data-view="owners">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span>Property Owners</span>
+        </button>
+        <button class="nav-item" data-view="reports">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </span>
+          <span>Reports & Analytics</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="profile-switch">
+          <span class="avatar admin-avatar">RA</span>
+          <span class="profile-copy"><strong>Rentora Admin</strong><small>Administrator</small></span>
+          <span class="more-dots">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+          </span>
+        </button>
+        <button class="logout-button" id="adminLogoutBtn" type="button" aria-label="Log out of admin session">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Log Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="breadcrumb">
+          <span>Workspace</span>
+          <span class="crumb-slash">/</span>
+          <strong id="pageCrumb">Overview</strong>
+        </div>
+        <div class="topbar-actions">
+          <a class="secondary-button" href="index.html" style="display: inline-flex; align-items: center; gap: 7px; text-decoration: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Live Website</span>
+          </a>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <!-- 1. VIEW: OVERVIEW -->
+        <section class="page-view active-view" id="view-overview">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">TUESDAY, OCTOBER 13, 2026</p>
+              <h1>Good afternoon, Administrator</h1>
+              <p class="page-subtitle">Here is what is happening with your property portfolio today.</p>
+            </div>
+            <button class="primary-button" id="addPropertyBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Property</span>
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Total Properties</span>
+                <span class="stat-icon green-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5M5.5 9v11h13V9M9 20v-7h6v7"/></svg>
+                </span>
+              </div>
+              <div class="stat-value">248</div>
+              <div class="stat-foot"><span class="trend up">Up 8.2%</span><span>vs. last month</span></div>
+              <div class="mini-bars bars-one"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Available Listings</span>
+                <span class="stat-icon blue-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </span>
+              </div>
+              <div class="stat-value">186</div>
+              <div class="stat-foot"><span class="trend up">Up 5.4%</span><span>vs. last month</span></div>
+              <div class="mini-bars bars-two"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>New Enquiries</span>
+                <span class="stat-icon amber-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </span>
+              </div>
+              <div class="stat-value">32</div>
+              <div class="stat-foot"><span class="trend up">Up 12.6%</span><span>vs. last month</span></div>
+              <div class="mini-bars bars-three"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top">
+                <span>Registered Customers</span>
+                <span class="stat-icon purple-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </span>
+              </div>
+              <div class="stat-value">1,284</div>
+              <div class="stat-foot"><span class="trend up">Up 9.1%</span><span>vs. last month</span></div>
+              <div class="mini-bars bars-four"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel property-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Recently added properties</h2>
+                  <p>Keep track of your latest rental listings.</p>
+                </div>
+                <button class="text-button" data-go="properties">View all listings</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>PROPERTY</th><th>MONTHLY RENT</th><th>STATUS</th><th></th></tr>
+                  </thead>
+                  <tbody id="recentProperties">
+                    <tr data-search="modern family apartment chennai anna nagar">
+                      <td>
+                        <div class="property-cell">
+                          <img src="assets/twilight-luxury-apartment.png" alt="Modern Family Apartment">
+                          <div>
+                            <strong>Modern Family Apartment</strong>
+                            <small>Anna Nagar, Chennai · 3 Beds</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="rent-value">₹24,000 <small>/ month</small></td>
+                      <td><span class="status status-available">Available</span></td>
+                      <td>
+                        <button class="row-more" aria-label="More options">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-search="sunlit 2bhk coimbatore rs puram">
+                      <td>
+                        <div class="property-cell">
+                          <img src="assets/luxury-glass-villa-about.jpg" alt="Sunlit 2BHK Apartment">
+                          <div>
+                            <strong>Sunlit 2BHK Apartment</strong>
+                            <small>RS Puram, Coimbatore · 2 Beds</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="rent-value">₹16,500 <small>/ month</small></td>
+                      <td><span class="status status-review">In review</span></td>
+                      <td>
+                        <button class="row-more" aria-label="More options">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-search="garden villa madurai kk nagar">
+                      <td>
+                        <div class="property-cell">
+                          <img src="assets/modern-luxury-villa.jpg" alt="Garden View Villa">
+                          <div>
+                            <strong>Garden View Villa</strong>
+                            <small>KK Nagar, Madurai · 4 Beds</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="rent-value">₹32,000 <small>/ month</small></td>
+                      <td><span class="status status-available">Available</span></td>
+                      <td>
+                        <button class="row-more" aria-label="More options">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr data-search="compact city studio trichy cantonment">
+                      <td>
+                        <div class="property-cell">
+                          <img src="assets/properties-luxury-hero.jpg" alt="Compact City Studio">
+                          <div>
+                            <strong>Compact City Studio</strong>
+                            <small>Cantonment, Trichy · 1 Bed</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="rent-value">₹9,500 <small>/ month</small></td>
+                      <td><span class="status status-rented">Rented</span></td>
+                      <td>
+                        <button class="row-more" aria-label="More options">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel enquiries-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Latest enquiries</h2>
+                  <p>Follow up with prospective tenants.</p>
+                </div>
+                <button class="text-button" data-go="enquiries">View all</button>
+              </div>
+              <div class="enquiry-list" id="recentEnquiries">
+                <article class="enquiry-item" data-search="priya krishnan modern family apartment">
+                  <span class="avatar customer-avatar avatar-pink">PK</span>
+                  <div class="enquiry-main">
+                    <strong>Priya Krishnan</strong>
+                    <p>Modern Family Apartment</p>
+                    <small>12 min ago</small>
+                  </div>
+                  <span class="status status-new">New</span>
+                </article>
+                <article class="enquiry-item" data-search="arun kumar sunlit apartment">
+                  <span class="avatar customer-avatar avatar-blue">AK</span>
+                  <div class="enquiry-main">
+                    <strong>Arun Kumar</strong>
+                    <p>Sunlit 2BHK Apartment</p>
+                    <small>48 min ago</small>
+                  </div>
+                  <span class="status status-contacted">Contacted</span>
+                </article>
+                <article class="enquiry-item" data-search="meena s garden view villa">
+                  <span class="avatar customer-avatar avatar-yellow">MS</span>
+                  <div class="enquiry-main">
+                    <strong>Meena S.</strong>
+                    <p>Garden View Villa</p>
+                    <small>2 hours ago</small>
+                  </div>
+                  <span class="status status-new">New</span>
+                </article>
+                <article class="enquiry-item" data-search="rahul r compact city studio">
+                  <span class="avatar customer-avatar avatar-green">RR</span>
+                  <div class="enquiry-main">
+                    <strong>Rahul R.</strong>
+                    <p>Compact City Studio</p>
+                    <small>Yesterday</small>
+                  </div>
+                  <span class="status status-viewing">Viewing scheduled</span>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel activity-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Listing pipeline overview</h2>
+                <p>A snapshot of your active inventory status.</p>
+              </div>
+              <span class="period-pill">October 2026</span>
+            </div>
+            <div class="pipeline">
+              <div class="pipeline-item">
+                <span class="pipeline-dot dot-green"></span>
+                <div><strong>186</strong><span>Available</span></div>
+                <div class="pipeline-track"><i style="width:75%"></i></div>
+                <b>75%</b>
+              </div>
+              <div class="pipeline-item">
+                <span class="pipeline-dot dot-blue"></span>
+                <div><strong>38</strong><span>Under enquiry</span></div>
+                <div class="pipeline-track"><i style="width:15%"></i></div>
+                <b>15%</b>
+              </div>
+              <div class="pipeline-item">
+                <span class="pipeline-dot dot-gray"></span>
+                <div><strong>24</strong><span>Rented</span></div>
+                <div class="pipeline-track"><i style="width:10%"></i></div>
+                <b>10%</b>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- 2. VIEW: PROPERTIES -->
+        <section class="page-view" id="view-properties">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">PORTFOLIO MANAGEMENT</p>
+              <h1>Properties</h1>
+              <p class="page-subtitle">Review, publish, and maintain your rental inventory.</p>
+            </div>
+            <button class="primary-button" id="addPropertyBtn2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Property</span>
+            </button>
+          </div>
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="propertySearch" type="search" placeholder="Search properties by name or location...">
+              </label>
+              <select id="propertyStatusFilter" aria-label="Filter property status">
+                <option value="all">All statuses</option>
+                <option value="available">Available</option>
+                <option value="review">In review</option>
+                <option value="rented">Rented</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>PROPERTY</th><th>MONTHLY RENT</th><th>STATUS</th><th>LOCATION</th><th>ACTION</th></tr>
+                </thead>
+                <tbody id="propertiesTable">
+                  <tr data-status="available" data-search="modern family apartment anna nagar chennai">
+                    <td>
+                      <div class="property-cell">
+                        <img src="assets/twilight-luxury-apartment.png" alt="Modern Family Apartment">
+                        <div>
+                          <strong>Modern Family Apartment</strong>
+                          <small>3 bedrooms · 2 bathrooms · 1,250 sq.ft.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="rent-value">₹24,000 <small>/ month</small></td>
+                    <td><span class="status status-available">Available</span></td>
+                    <td>Anna Nagar, Chennai</td>
+                    <td><button class="secondary-button small-action" data-action="edit">Edit</button></td>
+                  </tr>
+                  <tr data-status="review" data-search="sunlit 2bhk apartment rs puram coimbatore">
+                    <td>
+                      <div class="property-cell">
+                        <img src="assets/luxury-glass-villa-about.jpg" alt="Sunlit 2BHK Apartment">
+                        <div>
+                          <strong>Sunlit 2BHK Apartment</strong>
+                          <small>2 bedrooms · 2 bathrooms · 980 sq.ft.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="rent-value">₹16,500 <small>/ month</small></td>
+                    <td><span class="status status-review">In review</span></td>
+                    <td>RS Puram, Coimbatore</td>
+                    <td><button class="secondary-button small-action" data-action="edit">Edit</button></td>
+                  </tr>
+                  <tr data-status="available" data-search="garden view villa kk nagar madurai">
+                    <td>
+                      <div class="property-cell">
+                        <img src="assets/modern-luxury-villa.jpg" alt="Garden View Villa">
+                        <div>
+                          <strong>Garden View Villa</strong>
+                          <small>4 bedrooms · 3 bathrooms · 1,900 sq.ft.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="rent-value">₹32,000 <small>/ month</small></td>
+                    <td><span class="status status-available">Available</span></td>
+                    <td>KK Nagar, Madurai</td>
+                    <td><button class="secondary-button small-action" data-action="edit">Edit</button></td>
+                  </tr>
+                  <tr data-status="rented" data-search="compact city studio cantonment trichy">
+                    <td>
+                      <div class="property-cell">
+                        <img src="assets/properties-luxury-hero.jpg" alt="Compact City Studio">
+                        <div>
+                          <strong>Compact City Studio</strong>
+                          <small>1 bedroom · 1 bathroom · 520 sq.ft.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="rent-value">₹9,500 <small>/ month</small></td>
+                    <td><span class="status status-rented">Rented</span></td>
+                    <td>Cantonment, Trichy</td>
+                    <td><button class="secondary-button small-action" data-action="edit">Edit</button></td>
+                  </tr>
+                  <tr data-status="available" data-search="lakefront family home ecr chennai">
+                    <td>
+                      <div class="property-cell">
+                        <img src="assets/services-hero-luxury.jpg" alt="Lakefront Family Home">
+                        <div>
+                          <strong>Lakefront Family Home</strong>
+                          <small>3 bedrooms · 3 bathrooms · 1,600 sq.ft.</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="rent-value">₹28,000 <small>/ month</small></td>
+                    <td><span class="status status-available">Available</span></td>
+                    <td>ECR, Chennai</td>
+                    <td><button class="secondary-button small-action" data-action="edit">Edit</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span id="propertyCount">Showing 5 properties</span>
+              <span>Active inventory</span>
+            </div>
+          </section>
+        </section>
+
+        <!-- 3. VIEW: ENQUIRIES -->
+        <section class="page-view" id="view-enquiries">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">CUSTOMER RELATIONS</p>
+              <h1>Enquiries</h1>
+              <p class="page-subtitle">Track incoming leads and update customer conversation stages.</p>
+            </div>
+            <span class="date-chip">6 active enquiries</span>
+          </div>
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="enquirySearch" type="search" placeholder="Search customer or property...">
+              </label>
+              <select id="enquiryStatusFilter" aria-label="Filter enquiry status">
+                <option value="all">All statuses</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Viewing scheduled">Viewing scheduled</option>
+                <option value="Resolved">Resolved</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>CUSTOMER</th><th>PROPERTY</th><th>SUBMITTED</th><th>STATUS</th><th>UPDATE STATUS</th></tr>
+                </thead>
+                <tbody id="enquiriesTable">
+                  <tr data-status="New" data-search="priya krishnan modern family apartment">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-pink">PK</span>
+                        <div><strong>Priya Krishnan</strong><small>priya.k@example.com</small></div>
+                      </div>
+                    </td>
+                    <td>Modern Family Apartment<small class="table-subtext">Anna Nagar, Chennai</small></td>
+                    <td>Today, 10:42 AM</td>
+                    <td><span class="status status-new status-label">New</span></td>
+                    <td>
+                      <select class="inline-status" aria-label="Update Priya enquiry status">
+                        <option value="New" selected>New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Viewing scheduled">Viewing scheduled</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr data-status="Contacted" data-search="arun kumar sunlit 2bhk apartment">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-blue">AK</span>
+                        <div><strong>Arun Kumar</strong><small>arun.k@example.com</small></div>
+                      </div>
+                    </td>
+                    <td>Sunlit 2BHK Apartment<small class="table-subtext">RS Puram, Coimbatore</small></td>
+                    <td>Today, 9:55 AM</td>
+                    <td><span class="status status-contacted status-label">Contacted</span></td>
+                    <td>
+                      <select class="inline-status" aria-label="Update Arun enquiry status">
+                        <option value="New">New</option>
+                        <option value="Contacted" selected>Contacted</option>
+                        <option value="Viewing scheduled">Viewing scheduled</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr data-status="New" data-search="meena s garden view villa">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-yellow">MS</span>
+                        <div><strong>Meena S.</strong><small>meena.s@example.com</small></div>
+                      </div>
+                    </td>
+                    <td>Garden View Villa<small class="table-subtext">KK Nagar, Madurai</small></td>
+                    <td>Today, 8:30 AM</td>
+                    <td><span class="status status-new status-label">New</span></td>
+                    <td>
+                      <select class="inline-status" aria-label="Update Meena enquiry status">
+                        <option value="New" selected>New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Viewing scheduled">Viewing scheduled</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr data-status="Viewing scheduled" data-search="rahul r compact city studio">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-green">RR</span>
+                        <div><strong>Rahul R.</strong><small>rahul.r@example.com</small></div>
+                      </div>
+                    </td>
+                    <td>Compact City Studio<small class="table-subtext">Cantonment, Trichy</small></td>
+                    <td>Yesterday, 4:12 PM</td>
+                    <td><span class="status status-viewing status-label">Viewing scheduled</span></td>
+                    <td>
+                      <select class="inline-status" aria-label="Update Rahul enquiry status">
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Viewing scheduled" selected>Viewing scheduled</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr data-status="Resolved" data-search="nithya r lakefront family home">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-purple">NR</span>
+                        <div><strong>Nithya R.</strong><small>nithya.r@example.com</small></div>
+                      </div>
+                    </td>
+                    <td>Lakefront Family Home<small class="table-subtext">ECR, Chennai</small></td>
+                    <td>Oct 11, 2026</td>
+                    <td><span class="status status-resolved status-label">Resolved</span></td>
+                    <td>
+                      <select class="inline-status" aria-label="Update Nithya enquiry status">
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Viewing scheduled">Viewing scheduled</option>
+                        <option value="Resolved" selected>Resolved</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span id="enquiryCount">Showing 5 enquiries</span>
+              <span>Status updates sync automatically</span>
+            </div>
+          </section>
+        </section>
+
+        <!-- 4. VIEW: CUSTOMERS (Expanded to 8 Realistic Verified Tenants) -->
+        <section class="page-view" id="view-customers">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">CUSTOMER RELATIONS</p>
+              <h1>Customers</h1>
+              <p class="page-subtitle">Registered tenants and prospective applicants using Rentora.</p>
+            </div>
+          </div>
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="customerSearch" type="search" placeholder="Search customer by name or contact...">
+              </label>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>CUSTOMER</th><th>CONTACT</th><th>ENQUIRIES</th><th>CURRENT STATUS</th><th>JOINED</th></tr>
+                </thead>
+                <tbody id="customersTable">
+                  <tr data-search="priya krishnan">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-pink">PK</span><strong>Priya Krishnan</strong></div></td>
+                    <td>priya.k@example.com<small class="table-subtext">+91 98765 43210</small></td>
+                    <td>3</td>
+                    <td><span class="status status-available">Verified Tenant</span></td>
+                    <td>Oct 02, 2026</td>
+                  </tr>
+                  <tr data-search="arun kumar">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-blue">AK</span><strong>Arun Kumar</strong></div></td>
+                    <td>arun.k@example.com<small class="table-subtext">+91 98765 43211</small></td>
+                    <td>2</td>
+                    <td><span class="status status-review">Application In Review</span></td>
+                    <td>Sep 28, 2026</td>
+                  </tr>
+                  <tr data-search="meena s">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-yellow">MS</span><strong>Meena S.</strong></div></td>
+                    <td>meena.s@example.com<small class="table-subtext">+91 98765 43212</small></td>
+                    <td>1</td>
+                    <td><span class="status status-new">Active Shortlist</span></td>
+                    <td>Sep 24, 2026</td>
+                  </tr>
+                  <tr data-search="rahul r">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-green">RR</span><strong>Rahul R.</strong></div></td>
+                    <td>rahul.r@example.com<small class="table-subtext">+91 98765 43213</small></td>
+                    <td>2</td>
+                    <td><span class="status status-viewing">Viewing Scheduled</span></td>
+                    <td>Sep 15, 2026</td>
+                  </tr>
+                  <tr data-search="nithya r">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-purple">NR</span><strong>Nithya R.</strong></div></td>
+                    <td>nithya.r@example.com<small class="table-subtext">+91 98765 43214</small></td>
+                    <td>4</td>
+                    <td><span class="status status-available">Lease Active</span></td>
+                    <td>Aug 19, 2026</td>
+                  </tr>
+                  <tr data-search="siddharth v">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-blue">SV</span><strong>Siddharth V.</strong></div></td>
+                    <td>siddharth.v@example.com<small class="table-subtext">+91 98765 43215</small></td>
+                    <td>1</td>
+                    <td><span class="status status-new">Identity Verified</span></td>
+                    <td>Aug 10, 2026</td>
+                  </tr>
+                  <tr data-search="ananya sharma">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-pink">AS</span><strong>Ananya Sharma</strong></div></td>
+                    <td>ananya.s@example.com<small class="table-subtext">+91 98765 43216</small></td>
+                    <td>3</td>
+                    <td><span class="status status-review">Escrow Pending</span></td>
+                    <td>Jul 28, 2026</td>
+                  </tr>
+                  <tr data-search="karthik n">
+                    <td><div class="customer-cell"><span class="avatar customer-avatar avatar-yellow">KN</span><strong>Karthik N.</strong></div></td>
+                    <td>karthik.n@example.com<small class="table-subtext">+91 98765 43217</small></td>
+                    <td>2</td>
+                    <td><span class="status status-available">Verified Tenant</span></td>
+                    <td>Jul 12, 2026</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <!-- 5. VIEW: PROPERTY OWNERS (Fully Populated with Owner & Property Records) -->
+        <section class="page-view" id="view-owners">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">OWNER & ASSET PORTFOLIO</p>
+              <h1>Property Owners</h1>
+              <p class="page-subtitle">Track registered landlords, unit allocation, managed leases, and payout yields.</p>
+            </div>
+            <button class="primary-button" onclick="showToast('Owner onboarding modal ready for data entry.')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Onboard Owner</span>
+            </button>
+          </div>
+
+          <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 24px;">
+            <article class="stat-card">
+              <div class="stat-top"><span>Total Landlords</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
+              <div class="stat-value">64</div>
+              <div class="stat-foot"><span>Over 240 active units managed</span></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>NRI Portfolio Owners</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span></div>
+              <div class="stat-value">28</div>
+              <div class="stat-foot"><span>Remote lease & power-of-attorney</span></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span>Monthly Escrow Disbursed</span><span class="stat-icon amber-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span></div>
+              <div class="stat-value">₹54.2L</div>
+              <div class="stat-foot"><span>100% on-time 1st-of-month payout</span></div>
+            </article>
+          </div>
+
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="ownerSearch" type="search" placeholder="Search owner by name, property, or city...">
+              </label>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>OWNER NAME</th><th>ASSIGNED PROPERTIES</th><th>LOCATION</th><th>MANAGED UNITS</th><th>PAYOUT STATUS</th><th>ACTION</th></tr>
+                </thead>
+                <tbody id="ownersTable">
+                  <tr data-search="kavitha sundaram modern family apartment anna nagar">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-green">KS</span>
+                        <div><strong>Kavitha Sundaram</strong><small>kavitha.s@example.com · +91 94440 12345</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Modern Family Apartment</strong><small class="table-subtext">3BHK Penthouse, Tower B</small></td>
+                    <td>Anna Nagar, Chennai</td>
+                    <td>2 Units</td>
+                    <td><span class="status status-available">Auto-Disbursed (₹48,000)</span></td>
+                    <td><button class="secondary-button small-action" onclick="showToast('Opening Kavitha Sundaram portfolio statement')">Statement</button></td>
+                  </tr>
+                  <tr data-search="suresh balaji sunlit 2bhk apartment rs puram">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-blue">SB</span>
+                        <div><strong>Suresh Balaji (NRI - Singapore)</strong><small>suresh.b@sgmail.com · +65 9123 4567</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Sunlit 2BHK Apartment</strong><small class="table-subtext">East Wing, 4th Floor</small></td>
+                    <td>RS Puram, Coimbatore</td>
+                    <td>1 Unit</td>
+                    <td><span class="status status-available">NRE Remitted (₹16,500)</span></td>
+                    <td><button class="secondary-button small-action" onclick="showToast('Opening Suresh Balaji portfolio statement')">Statement</button></td>
+                  </tr>
+                  <tr data-search="rajendran m garden view villa madurai">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-yellow">RM</span>
+                        <div><strong>Dr. Rajendran M.</strong><small>rajendran.m@example.com · +91 98410 78901</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Garden View Villa</strong><small class="table-subtext">Independent G+1 Bungalow</small></td>
+                    <td>KK Nagar, Madurai</td>
+                    <td>3 Units</td>
+                    <td><span class="status status-available">Auto-Disbursed (₹64,000)</span></td>
+                    <td><button class="secondary-button small-action" onclick="showToast('Opening Dr. Rajendran portfolio statement')">Statement</button></td>
+                  </tr>
+                  <tr data-search="anandhi ram compact city studio cantonment">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-pink">AR</span>
+                        <div><strong>Anandhi Ramakrishnan</strong><small>anandhi.r@example.com · +91 97900 54321</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Compact City Studio</strong><small class="table-subtext">Executive Suite 204</small></td>
+                    <td>Cantonment, Trichy</td>
+                    <td>1 Unit</td>
+                    <td><span class="status status-available">Auto-Disbursed (₹9,500)</span></td>
+                    <td><button class="secondary-button small-action" onclick="showToast('Opening Anandhi Ramakrishnan portfolio statement')">Statement</button></td>
+                  </tr>
+                  <tr data-search="vijay raghavan lakefront family home ecr">
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar customer-avatar avatar-purple">VR</span>
+                        <div><strong>Vijay Raghavan (NRI - Dubai)</strong><small>v.raghavan@dubai.ae · +971 50 123 4567</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Lakefront Family Home</strong><small class="table-subtext">Seaside Enclave Plot 14</small></td>
+                    <td>ECR, Chennai</td>
+                    <td>2 Units</td>
+                    <td><span class="status status-available">NRE Remitted (₹56,000)</span></td>
+                    <td><button class="secondary-button small-action" onclick="showToast('Opening Vijay Raghavan portfolio statement')">Statement</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <!-- 6. VIEW: REPORTS & ANALYTICS (Fully Designed Analytics Dashboard) -->
+        <section class="page-view" id="view-reports">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">BUSINESS INTELLIGENCE</p>
+              <h1>Reports & Performance</h1>
+              <p class="page-subtitle">Real estate operational metrics, rental yield benchmarks, and customer acquisition.</p>
+            </div>
+            <button class="primary-button" onclick="showToast('Exporting Q3 portfolio PDF report...')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download PDF Report</span>
+            </button>
+          </div>
+
+          <!-- Report Breakdown Grid -->
+          <div class="dashboard-grid" style="margin-bottom: 24px;">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Occupancy & Vacancy Rate</h2>
+                  <p>94.2% portfolio occupancy maintained across Chennai, Coimbatore & Madurai.</p>
+                </div>
+                <span class="period-pill">Past 12 Months</span>
+              </div>
+              <div style="padding: 24px;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+                  <div style="border: 1px solid var(--line); border-radius: 10px; padding: 14px;">
+                    <small style="color: var(--muted); font-size: 10px; font-weight: 700; display: block;">OCCUPIED UNITS</small>
+                    <strong style="font-size: 24px; color: var(--navy); display: block; margin-top: 4px;">234</strong>
+                    <span style="color: #2d9561; font-size: 11px; font-weight: 700;">94.2% of total inventory</span>
+                  </div>
+                  <div style="border: 1px solid var(--line); border-radius: 10px; padding: 14px;">
+                    <small style="color: var(--muted); font-size: 10px; font-weight: 700; display: block;">AVERAGE DAYS TO LEASE</small>
+                    <strong style="font-size: 24px; color: var(--navy); display: block; margin-top: 4px;">11.4</strong>
+                    <span style="color: #2d9561; font-size: 11px; font-weight: 700;">-3.2 days vs market</span>
+                  </div>
+                  <div style="border: 1px solid var(--line); border-radius: 10px; padding: 14px;">
+                    <small style="color: var(--muted); font-size: 10px; font-weight: 700; display: block;">RENTAL RETENTION RATE</small>
+                    <strong style="font-size: 24px; color: var(--navy); display: block; margin-top: 4px;">88.6%</strong>
+                    <span style="color: #2d9561; font-size: 11px; font-weight: 700;">12-month lease renewals</span>
+                  </div>
+                </div>
+
+                <div class="pipeline">
+                  <div class="pipeline-item">
+                    <span class="pipeline-dot dot-green"></span>
+                    <div><strong>Chennai Core (Anna Nagar, ECR)</strong><span>140 Units</span></div>
+                    <div class="pipeline-track"><i style="width:96%"></i></div>
+                    <b>96%</b>
+                  </div>
+                  <div class="pipeline-item">
+                    <span class="pipeline-dot dot-blue"></span>
+                    <div><strong>Coimbatore (RS Puram, Race Course)</strong><span>68 Units</span></div>
+                    <div class="pipeline-track"><i style="width:92%"></i></div>
+                    <b>92%</b>
+                  </div>
+                  <div class="pipeline-item">
+                    <span class="pipeline-dot dot-gray"></span>
+                    <div><strong>Madurai & Trichy Urban</strong><span>40 Units</span></div>
+                    <div class="pipeline-track"><i style="width:90%"></i></div>
+                    <b>90%</b>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Rental Yield & Maintenance Efficiency</h2>
+                  <p>Client communication, maintenance SLA response, and rent escrow health.</p>
+                </div>
+              </div>
+              <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+                <div style="background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; padding: 16px;">
+                  <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 6px;">Average Maintenance Resolution SLA</strong>
+                  <p style="font-size: 11px; color: var(--muted); margin: 0 0 10px;">Emergency dispatch tickets resolved in under 90 minutes. Routine repairs completed within 24 hours.</p>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #2d9561;">
+                    <span>SLA Compliance</span>
+                    <span>99.2%</span>
+                  </div>
+                </div>
+
+                <div style="background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; padding: 16px;">
+                  <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 6px;">Customer Inquiries Conversion</strong>
+                  <p style="font-size: 11px; color: var(--muted); margin: 0 0 10px;">Leads transitioned from first website message to confirmed viewing and signed tenancy agreement.</p>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #2d9561;">
+                    <span>Lead Conversion</span>
+                    <span>42.8%</span>
+                  </div>
+                </div>
+
+                <div style="background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; padding: 16px;">
+                  <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 6px;">Digital Escrow Settlement Time</strong>
+                  <p style="font-size: 11px; color: var(--muted); margin: 0 0 10px;">RBI-regulated auto-clearing via UPI and NACH auto-debit directly to property owners on the 1st of each month.</p>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #2d9561;">
+                    <span>On-Time Payout</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- 7. VIEW: ADD PROPERTY (CREATOR STUDIO) -->
+        <section class="page-view" id="view-add-property">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">PROPERTY CREATOR STUDIO</p>
+              <h1>Add & Publish Property</h1>
+              <p class="page-subtitle">Configure pictures, specs, pricing, and about details. Everything published here is immediately visible across the website.</p>
+            </div>
+            <button class="secondary-button" data-go="properties">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              <span>Back to Properties</span>
+            </button>
+          </div>
+
+          <div class="creator-grid">
+            <!-- Left Panel: Input Configuration Form -->
+            <div class="creator-form-panel">
+              <form id="creatorPropertyForm" class="creator-form">
+                <div class="form-group-title">1. Essential Property Information</div>
+
+                <div class="creator-field">
+                  <label for="creatorTitle">Property Title</label>
+                  <input type="text" id="creatorTitle" name="title" required placeholder="e.g. Royal Palms Residency" value="Royal Palms Residency">
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="creator-field">
+                    <label for="creatorRent">Monthly Rent (₹)</label>
+                    <input type="number" id="creatorRent" name="rent" required min="5000" step="500" placeholder="e.g. 52000" value="52000">
+                  </div>
+                  <div class="creator-field">
+                    <label for="creatorCategory">Property Category</label>
+                    <select id="creatorCategory" name="category">
+                      <option value="apartment" selected>Apartment</option>
+                      <option value="villa">Luxury Villa</option>
+                      <option value="studio">Modern Studio</option>
+                      <option value="penthouse">Penthouse</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="creator-field">
+                  <label for="creatorLocation">Neighborhood & City</label>
+                  <input type="text" id="creatorLocation" name="location" required placeholder="e.g. Anna Nagar, Chennai" value="Anna Nagar, Chennai">
+                </div>
+
+                <div class="form-group-title">2. Configuration & Dimensions</div>
+
+                <div class="form-grid-3">
+                  <div class="creator-field">
+                    <label for="creatorBeds">Bedrooms</label>
+                    <select id="creatorBeds" name="beds">
+                      <option value="1">1 BHK</option>
+                      <option value="2">2 BHK</option>
+                      <option value="3" selected>3 BHK</option>
+                      <option value="4+">4+ BHK</option>
+                    </select>
+                  </div>
+                  <div class="creator-field">
+                    <label for="creatorBaths">Bathrooms</label>
+                    <select id="creatorBaths" name="baths">
+                      <option value="1">1 Bath</option>
+                      <option value="2">2 Baths</option>
+                      <option value="3" selected>3 Baths</option>
+                      <option value="4">4 Baths</option>
+                    </select>
+                  </div>
+                  <div class="creator-field">
+                    <label for="creatorArea">Carpet Area</label>
+                    <input type="text" id="creatorArea" name="area" placeholder="e.g. 1,650 sqft" value="1,650 sqft">
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="creator-field">
+                    <label for="creatorFurnishing">Furnishing Status</label>
+                    <select id="creatorFurnishing" name="furnishing">
+                      <option value="furnished" selected>Fully Furnished</option>
+                      <option value="semi-furnished">Semi Furnished</option>
+                      <option value="unfurnished">Unfurnished</option>
+                    </select>
+                  </div>
+                  <div class="creator-field">
+                    <label for="creatorStatus">Listing Visibility</label>
+                    <select id="creatorStatus" name="status">
+                      <option value="available" selected>Available for Rent</option>
+                      <option value="review">Under Review / Verification</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group-title">3. Visual Presentation & Cover Photo</div>
+                
+                <div class="creator-field">
+                  <label>Select Cover Image Asset</label>
+                  <input type="hidden" id="creatorImage" name="image" value="assets/twilight-luxury-apartment.png">
+                  <div class="image-picker-grid" id="imagePicker">
+                    <div class="image-picker-card selected" data-src="assets/twilight-luxury-apartment.png">
+                      <img src="assets/twilight-luxury-apartment.png" alt="Twilight Luxury">
+                      <span class="image-picker-badge">Twilight Suite</span>
+                    </div>
+                    <div class="image-picker-card" data-src="assets/luxury-glass-villa-about.jpg">
+                      <img src="assets/luxury-glass-villa-about.jpg" alt="Glass Villa">
+                      <span class="image-picker-badge">Glass Villa</span>
+                    </div>
+                    <div class="image-picker-card" data-src="assets/modern-luxury-villa.jpg">
+                      <img src="assets/modern-luxury-villa.jpg" alt="Modern Villa">
+                      <span class="image-picker-badge">Modern Villa</span>
+                    </div>
+                    <div class="image-picker-card" data-src="assets/properties-luxury-hero.jpg">
+                      <img src="assets/properties-luxury-hero.jpg" alt="Metropolitan Residence">
+                      <span class="image-picker-badge">Metropolitan</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="creator-field">
+                  <label for="creatorDesc">About Details & Description</label>
+                  <textarea id="creatorDesc" name="desc" placeholder="Describe key property highlights, interior design, ventilation, and amenities...">Exquisite high-floor residence featuring Italian marble flooring, panoramic city balconies, modular German kitchen, and smart home automation.</textarea>
+                </div>
+
+                <div class="creator-actions">
+                  <button type="button" class="secondary-button" id="resetCreatorBtn">Reset Form</button>
+                  <button type="submit" class="primary-button" id="publishCreatorBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Publish to Website</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right Panel: Real-Time Interactive Live Preview -->
+            <div class="creator-preview-panel">
+              <div class="panel-heading" style="padding: 0 0 16px;">
+                <div>
+                  <h2>Live Website Card Preview</h2>
+                  <p>Real-time visual reflection of how potential tenants will see this property on Rentora.</p>
+                </div>
+                <span class="status status-available" id="previewStatusBadge">Available</span>
+              </div>
+
+              <div class="preview-card-wrap">
+                <div class="preview-media">
+                  <img id="previewImg" src="assets/twilight-luxury-apartment.png" alt="Property Preview">
+                  <span class="preview-badge-status" id="previewBadgeCategory">Apartment</span>
+                  <div class="preview-price-pill">
+                    <span id="previewPrice">₹52,000</span>
+                    <small>/mo</small>
+                  </div>
+                </div>
+
+                <div class="preview-details">
+                  <div class="preview-location-line">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+                    <span id="previewLocation">Anna Nagar, Chennai</span>
+                  </div>
+
+                  <h3 id="previewTitle">Royal Palms Residency</h3>
+                  <p id="previewDesc">Exquisite high-floor residence featuring Italian marble flooring, panoramic city balconies, modular German kitchen, and smart home automation.</p>
+
+                  <div class="preview-spec-chips">
+                    <span class="spec-chip">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h20M22 4v16M2 17h20"/></svg>
+                      <span id="previewBeds">3 Beds</span>
+                    </span>
+                    <span class="spec-chip">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><line x1="12" y1="2" x2="12" y2="6"/></svg>
+                      <span id="previewBaths">3 Baths</span>
+                    </span>
+                    <span class="spec-chip">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                      <span id="previewArea">1,650 sqft</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; padding: 14px; background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; font-size: 11px; color: var(--muted); line-height: 1.5;">
+                <strong style="color: var(--navy); display: block; margin-bottom: 4px;">Dynamic Website Sync</strong>
+                Submitting this property persists it to local storage. It automatically appears in the Admin Dashboard table, updates your live count metrics, and instantly prepends to the public <strong>Properties</strong> listing page.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. VIEW: PAYMENTS & RENT TRANSACTIONS -->
+        <section class="page-view" id="view-payments">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">FINANCIAL LEDGER & COLLECTIONS</p>
+              <h1>Transactions & Rent Collections</h1>
+              <p class="page-subtitle">Track inbound tenant rent payments, security deposits, payment gateway clearing, and receipts.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="secondary-button" id="exportPaymentsBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Export Statement</span>
+              </button>
+              <button class="primary-button" id="recordPaymentBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Record Rent Receipt</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Financial Snapshot Metrics -->
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top"><span>October Collections</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span></div>
+              <div class="stat-value">₹14.85L</div>
+              <div class="stat-foot"><span class="trend up">94.2%</span> collected of ₹15.76L expected</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Pending Dues</span><span class="stat-icon amber-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span></div>
+              <div class="stat-value">₹91,000</div>
+              <div class="stat-foot"><span class="trend" style="color: #c9882b;">3 Invoices</span> pending past due date</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Digital Escrow Held</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+              <div class="stat-value">₹42.50L</div>
+              <div class="stat-foot"><span class="trend up">100%</span> tenant security deposits protected</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Average Collection Time</span><span class="stat-icon purple-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span></div>
+              <div class="stat-value">1.4 Days</div>
+              <div class="stat-foot"><span class="trend up">96%</span> auto-debited via UPI & NACH</div>
+            </article>
+          </div>
+
+          <!-- Transactions Table Panel -->
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="paymentSearch" type="search" placeholder="Search by tenant, property, or transaction ID...">
+              </label>
+              <select id="paymentTypeFilter" aria-label="Filter transaction category" style="margin-left: 10px;">
+                <option value="all">All transaction types</option>
+                <option value="rent">Monthly Rent</option>
+                <option value="deposit">Security Deposit</option>
+                <option value="maintenance">Maintenance SLA Fee</option>
+              </select>
+              <select id="paymentStatusFilter" aria-label="Filter payment status">
+                <option value="all">All statuses</option>
+                <option value="paid">Paid & Settled</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>TRANSACTION ID</th>
+                    <th>TENANT / PAYER</th>
+                    <th>PROPERTY</th>
+                    <th>CATEGORY</th>
+                    <th>AMOUNT</th>
+                    <th>METHOD</th>
+                    <th>STATUS</th>
+                    <th>DATE</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentsTable">
+                  <tr data-status="paid" data-type="rent" data-search="tx-98211 rohit verma grandview residences chennai upi">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98211</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-blue">RV</span>
+                        <div><strong>Rohit Verma</strong><small>rohit.v@corp.in</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Grandview Residences</strong><small>Flat 402, Alwarpet</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Monthly Rent</span></td>
+                    <td class="rent-value">₹45,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #40574b;">UPI Auto-Debit</span></td>
+                    <td><span class="status status-available">Paid</span></td>
+                    <td>12 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Downloading Receipt #TX-98211 PDF')">Receipt</button></td>
+                  </tr>
+
+                  <tr data-status="paid" data-type="rent" data-search="tx-98210 dr. ananya sen serene palms villa hyderabad netbanking">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98210</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-pink">AS</span>
+                        <div><strong>Dr. Ananya Sen</strong><small>ananya.sen@apollo.org</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Serene Palms Villa</strong><small>Villa 12, Jubilee Hills</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Monthly Rent</span></td>
+                    <td class="rent-value">₹85,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #40574b;">Net Banking (HDFC)</span></td>
+                    <td><span class="status status-available">Paid</span></td>
+                    <td>11 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Downloading Receipt #TX-98210 PDF')">Receipt</button></td>
+                  </tr>
+
+                  <tr data-status="pending" data-type="rent" data-search="tx-98209 priya krishnan modern family apartment chennai">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98209</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-pink">PK</span>
+                        <div><strong>Priya Krishnan</strong><small>priya.k@techmail.com</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Modern Family Apartment</strong><small>Tower B, Anna Nagar</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Monthly Rent</span></td>
+                    <td class="rent-value">₹24,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #7f8e85;">Payment Link Sent</span></td>
+                    <td><span class="status status-review">Pending (Due Oct 15)</span></td>
+                    <td>10 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Reminder SMS & WhatsApp dispatched to Priya Krishnan')">Remind</button></td>
+                  </tr>
+
+                  <tr data-status="paid" data-type="deposit" data-search="tx-98208 sameer khan skyline urban loft mumbai security deposit">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98208</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-yellow">SK</span>
+                        <div><strong>Sameer Khan</strong><small>sameer@ventures.io</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Skyline Urban Loft</strong><small>Unit 901, Bandra West</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px; background: #eef7fc; color: #286493; border-color: #d1e8f7;">Escrow Deposit</span></td>
+                    <td class="rent-value">₹1,14,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #40574b;">NEFT Escrow Transfer</span></td>
+                    <td><span class="status status-available">Paid</span></td>
+                    <td>09 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Certificate of Escrow Bond #TX-98208')">Escrow Bond</button></td>
+                  </tr>
+
+                  <tr data-status="paid" data-type="rent" data-search="tx-98207 arjun narang lakeside luxury penthouse bangalore imps">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98207</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-green">AN</span>
+                        <div><strong>Arjun Narang</strong><small>arjun.narang@fintech.co</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Lakeside Luxury Penthouse</strong><small>Penthouse 14, Whitefield</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Monthly Rent</span></td>
+                    <td class="rent-value">₹1,10,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #40574b;">IMPS Instant Transfer</span></td>
+                    <td><span class="status status-available">Paid</span></td>
+                    <td>08 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Downloading Receipt #TX-98207 PDF')">Receipt</button></td>
+                  </tr>
+
+                  <tr data-status="pending" data-type="rent" data-search="tx-98206 deepak chawla greenwood estate villa chennai">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98206</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-blue">DC</span>
+                        <div><strong>Deepak Chawla</strong><small>deepak.chawla@global.net</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Greenwood Estate Villa</strong><small>Villa 4, ECR, Chennai</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px;">Monthly Rent</span></td>
+                    <td class="rent-value">₹67,000</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #7f8e85;">NACH Retrying</span></td>
+                    <td><span class="status status-review">Pending</span></td>
+                    <td>07 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Retry NACH clearing')">Retry NACH</button></td>
+                  </tr>
+
+                  <tr data-status="paid" data-type="maintenance" data-search="tx-98205 karthik subramanian urban sanctuary studio madurai upi">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#TX-98205</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-purple">KS</span>
+                        <div><strong>Karthik Subramanian</strong><small>karthik.s@outlook.com</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Urban Sanctuary Studio</strong><small>Flat 101, KK Nagar</small></td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px; background: #fdf5e6; color: #9c6c1a; border-color: #f7e6c3;">Maintenance SLA</span></td>
+                    <td class="rent-value">₹3,500</td>
+                    <td><span style="font-size: 11px; font-weight: 700; color: #40574b;">UPI Instant</span></td>
+                    <td><span class="status status-available">Paid</span></td>
+                    <td>05 Oct 2026</td>
+                    <td><button class="secondary-button small-action" onclick="alert('Downloading Receipt #TX-98205 PDF')">Receipt</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <span id="paymentsCount">Showing 7 recorded transactions</span>
+              <span class="demo-note">RazorpayX & Stripe RBI-Compliant Escrow Gateway</span>
+            </div>
+          </section>
+        </section>
+
+        <!-- 9. VIEW: OWNER DISBURSALS & PAYOUTS -->
+        <section class="page-view" id="view-payouts">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">LANDLORD SETTLEMENTS</p>
+              <h1>Owner Disbursals & Payouts</h1>
+              <p class="page-subtitle">Automated monthly rent remittances to verified property owners minus Rentora's 8% asset management commission.</p>
+            </div>
+            <button class="primary-button" id="initiateDisbursalBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Process Batch Payout</span>
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-top"><span>October Remitted</span><span class="stat-icon green-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+              <div class="stat-value">₹13.66L</div>
+              <div class="stat-foot"><span class="trend up">100% On-Time</span> cleared on 1st of month</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Management Fee Yield</span><span class="stat-icon blue-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span></div>
+              <div class="stat-value">₹1.18L</div>
+              <div class="stat-foot">Rentora asset commission earnings</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Active Landlord Beneficiaries</span><span class="stat-icon purple-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span></div>
+              <div class="stat-value">8 Owners</div>
+              <div class="stat-foot">Penny-drop KYC bank accounts verified</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-top"><span>Next Scheduled Run</span><span class="stat-icon amber-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span></div>
+              <div class="stat-value">Nov 01</div>
+              <div class="stat-foot">Automated clearing via ICICI Corporate API</div>
+            </article>
+          </div>
+
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="payoutSearch" type="search" placeholder="Search by owner name, bank, or UTR number...">
+              </label>
+              <select id="payoutStatusFilter" aria-label="Filter payout status">
+                <option value="all">All statuses</option>
+                <option value="settled">Settled (NEFT / RTGS)</option>
+                <option value="queued">Queued for Next Cycle</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>DISBURSAL UTR</th>
+                    <th>OWNER / BENEFICIARY</th>
+                    <th>PROPERTY MANAGED</th>
+                    <th>GROSS RENT</th>
+                    <th>MGMT FEE (8%)</th>
+                    <th>NET DISBURSED</th>
+                    <th>BANK & ACC</th>
+                    <th>STATUS</th>
+                    <th>CLEARING DATE</th>
+                  </tr>
+                </thead>
+                <tbody id="payoutsTable">
+                  <tr data-status="settled" data-search="utr-772910 ramesh sundaram grandview residences hdfc">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">UTR-HDFC-772910</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-green">RS</span>
+                        <div><strong>Ramesh Sundaram</strong><small>ramesh.s@chennaiproperties.com</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Grandview Residences</strong><small>Chennai</small></td>
+                    <td>₹45,000</td>
+                    <td style="color: #925e24; font-weight: 700;">-₹3,600</td>
+                    <td class="rent-value" style="color: #216c47;">₹41,400</td>
+                    <td><strong>HDFC Bank</strong><small>Acc ••••8912</small></td>
+                    <td><span class="status status-available">Settled</span></td>
+                    <td>01 Oct 2026</td>
+                  </tr>
+
+                  <tr data-status="settled" data-search="utr-772911 malathi krishnamurthy serene palms villa icici">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">UTR-ICIC-772911</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-purple">MK</span>
+                        <div><strong>Malathi Krishnamurthy</strong><small>malathi.k@realtygroup.in</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Serene Palms Villa</strong><small>Hyderabad</small></td>
+                    <td>₹85,000</td>
+                    <td style="color: #925e24; font-weight: 700;">-₹6,800</td>
+                    <td class="rent-value" style="color: #216c47;">₹78,200</td>
+                    <td><strong>ICICI Bank</strong><small>Acc ••••3419</small></td>
+                    <td><span class="status status-available">Settled</span></td>
+                    <td>01 Oct 2026</td>
+                  </tr>
+
+                  <tr data-status="settled" data-search="utr-772912 vijay raghavan lakeside luxury penthouse sbi">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">UTR-SBIN-772912</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-blue">VR</span>
+                        <div><strong>Vijay Raghavan</strong><small>vijay.raghavan@vrholdings.com</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Lakeside Luxury Penthouse</strong><small>Bangalore</small></td>
+                    <td>₹1,10,000</td>
+                    <td style="color: #925e24; font-weight: 700;">-₹8,800</td>
+                    <td class="rent-value" style="color: #216c47;">₹1,01,200</td>
+                    <td><strong>State Bank of India</strong><small>Acc ••••6621</small></td>
+                    <td><span class="status status-available">Settled</span></td>
+                    <td>01 Oct 2026</td>
+                  </tr>
+
+                  <tr data-status="queued" data-search="utr-queued priya krishnan modern family apartment axis">
+                    <td><strong style="font-family: monospace; color: var(--muted); font-size: 11px;">PENDING TENANT</strong></td>
+                    <td>
+                      <div class="customer-cell">
+                        <span class="avatar avatar-yellow">GA</span>
+                        <div><strong>Gautam Adiga</strong><small>gautam.adiga@adiga.in</small></div>
+                      </div>
+                    </td>
+                    <td><strong>Modern Family Apartment</strong><small>Chennai</small></td>
+                    <td>₹24,000</td>
+                    <td style="color: #925e24; font-weight: 700;">-₹1,920</td>
+                    <td class="rent-value">₹22,080</td>
+                    <td><strong>Axis Bank</strong><small>Acc ••••5510</small></td>
+                    <td><span class="status status-review">Awaiting Clearing</span></td>
+                    <td>Due Oct 16</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <span id="payoutsCount">Showing 4 landlord settlement accounts</span>
+              <span class="demo-note">Bank automated settlement verification (NEFT/RTGS)</span>
+            </div>
+          </section>
+        </section>
+
+        <!-- 10. VIEW: LEASE AGREEMENTS & ESCROW BONDS -->
+        <section class="page-view" id="view-leases">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">CONTRACT MANAGEMENT</p>
+              <h1>Tenancy Leases & Escrow Bonds</h1>
+              <p class="page-subtitle">Legally enforceable e-signed tenancy agreements with active security deposit escrow bonds.</p>
+            </div>
+            <button class="primary-button" onclick="alert('Drafting new e-Stamping Tenancy Agreement template.')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Draft New Lease</span>
+            </button>
+          </div>
+
+          <section class="panel full-panel">
+            <div class="toolbar">
+              <label class="table-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="leaseSearch" type="search" placeholder="Search leases by contract ID, tenant, or property...">
+              </label>
+              <select id="leaseStatusFilter" aria-label="Filter lease contract status">
+                <option value="all">All lease statuses</option>
+                <option value="active">Active & Bound</option>
+                <option value="renewal">Expiring Soon (Renewal)</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>LEASE ID</th>
+                    <th>TENANT</th>
+                    <th>PROPERTY</th>
+                    <th>DURATION</th>
+                    <th>MONTHLY RENT</th>
+                    <th>ESCROW DEPOSIT</th>
+                    <th>E-STAMPING</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="leasesTable">
+                  <tr data-status="active" data-search="ls-2026-441 rohit verma grandview residences active">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#LS-2026-441</strong></td>
+                    <td><strong>Rohit Verma</strong><small>Aadhaar verified</small></td>
+                    <td><strong>Grandview Residences</strong><small>Flat 402, Chennai</small></td>
+                    <td>11 Months (Nov 2025 – Oct 2026)</td>
+                    <td class="rent-value">₹45,000</td>
+                    <td><strong style="color: #2d9561;">₹1,35,000</strong> (Held in Escrow)</td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px; color: #236743;">e-Signed & Stamped</span></td>
+                    <td><span class="status status-available">Active</span></td>
+                    <td><button class="secondary-button small-action" onclick="alert('Viewing Agreement #LS-2026-441')">View PDF</button></td>
+                  </tr>
+
+                  <tr data-status="active" data-search="ls-2026-382 dr. ananya sen serene palms villa active">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#LS-2026-382</strong></td>
+                    <td><strong>Dr. Ananya Sen</strong><small>Aadhaar verified</small></td>
+                    <td><strong>Serene Palms Villa</strong><small>Villa 12, Hyderabad</small></td>
+                    <td>24 Months (Jan 2026 – Dec 2027)</td>
+                    <td class="rent-value">₹85,000</td>
+                    <td><strong style="color: #2d9561;">₹2,55,000</strong> (Held in Escrow)</td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px; color: #236743;">e-Signed & Stamped</span></td>
+                    <td><span class="status status-available">Active</span></td>
+                    <td><button class="secondary-button small-action" onclick="alert('Viewing Agreement #LS-2026-382')">View PDF</button></td>
+                  </tr>
+
+                  <tr data-status="renewal" data-search="ls-2025-109 priya krishnan modern family apartment renewal">
+                    <td><strong style="font-family: monospace; color: var(--navy); font-size: 11px;">#LS-2025-109</strong></td>
+                    <td><strong>Priya Krishnan</strong><small>Aadhaar verified</small></td>
+                    <td><strong>Modern Family Apartment</strong><small>Tower B, Chennai</small></td>
+                    <td>11 Months (Nov 2025 – Oct 2026)</td>
+                    <td class="rent-value">₹24,000</td>
+                    <td><strong style="color: #2d9561;">₹72,000</strong> (Held in Escrow)</td>
+                    <td><span class="period-pill" style="padding: 4px 8px; font-size: 10px; color: #b47f25; background: #fff9ed;">Renewal Notice Sent</span></td>
+                    <td><span class="status status-review">Expiring in 18 Days</span></td>
+                    <td><button class="secondary-button small-action" onclick="alert('Initiating Lease Renewal for Priya Krishnan')">Send Renewal</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <span id="leasesCount">Showing 3 active lease agreements</span>
+              <span class="demo-note">Legally certified through Indian Contract Act & NeSL e-Stamping</span>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Add Property Modal -->
+  <div class="modal-backdrop" id="propertyModal" aria-hidden="true">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <span class="modal-kicker">PROPERTY LISTING</span>
+      <h2 id="modalTitle">Add a property</h2>
+      <p>Configure rental details, location, and bedroom configuration for instant publishing.</p>
+      <form id="quickPropertyForm">
+        <label>Property title
+          <input name="title" required placeholder="e.g. Spacious 2BHK Apartment">
+        </label>
+        <div class="form-row">
+          <label>Monthly rent (₹)
+            <input name="rent" type="number" min="1" required placeholder="24000">
+          </label>
+          <label>Bedrooms
+            <select name="beds">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4+">4+</option>
+            </select>
+          </label>
+        </div>
+        <label>Location
+          <input name="location" required placeholder="e.g. Anna Nagar, Chennai">
+        </label>
+        <label>Listing status
+          <select name="status">
+            <option value="available">Available</option>
+            <option value="review">In review</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="secondary-button" id="cancelModal">Cancel</button>
+          <button type="submit" class="primary-button">Publish Listing</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

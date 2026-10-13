@@ -1,0 +1,1507 @@
+/* ==========================================================================
+   Rentora Service Detail Page - Modern Architectural Design System
+   ========================================================================== */
+
+:root {
+  --sd-ink: var(--navy, #102a36);
+  --sd-navy-dark: #09171f;
+  --sd-green: var(--green, #2d8a68);
+  --sd-green-hover: #226b51;
+  --sd-mint: var(--mint, #e8f5f0);
+  --sd-mint-light: #f0fdf4;
+  --sd-paper: var(--paper, #f7f8f5);
+  --sd-soft: var(--soft, #eef4f0);
+  --sd-card-bg: #ffffff;
+  --sd-muted: var(--muted, #64748b);
+  --sd-line: var(--line, #e2e8f0);
+  --sd-line-subtle: rgba(16, 42, 54, 0.08);
+  --sd-heading: var(--font-heading, "Manrope", sans-serif);
+  --sd-body: var(--font-body, "DM Sans", sans-serif);
+  --sd-shadow-sm: 0 4px 12px rgba(16, 42, 54, 0.04);
+  --sd-shadow-md: 0 12px 32px rgba(16, 42, 54, 0.07);
+  --sd-shadow-lg: 0 20px 48px rgba(16, 42, 54, 0.12);
+}
+
+[data-theme="dark"] {
+  --sd-ink: #f1f5f9;
+  --sd-navy-dark: #050d12;
+  --sd-paper: #0b1c24;
+  --sd-soft: #0e232d;
+  --sd-card-bg: #112833;
+  --sd-muted: #94a3b8;
+  --sd-line: rgba(255, 255, 255, 0.12);
+  --sd-line-subtle: rgba(255, 255, 255, 0.06);
+  --sd-mint: rgba(45, 138, 104, 0.18);
+  --sd-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --sd-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --sd-shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+
+body {
+  font-family: var(--sd-body);
+  background-color: var(--sd-paper);
+  color: var(--sd-ink);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sd-shell {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   Dual-Heading Typography (Black/White + Vibrant Emerald Green)
+   ========================================================================== */
+.dual-heading {
+  font-family: var(--sd-heading);
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--sd-ink);
+  margin: 0;
+}
+
+[data-theme="dark"] .dual-heading {
+  color: #f1f5f9;
+}
+
+.dual-heading.text-white {
+  color: #ffffff !important;
+}
+
+.dual-heading .text-green,
+.text-green {
+  color: var(--sd-green) !important;
+  display: inline;
+}
+
+[data-theme="dark"] .dual-heading .text-green,
+[data-theme="dark"] .text-green {
+  color: #34d399 !important;
+}
+
+.text-green-light {
+  color: #34d399 !important;
+}
+
+.sd-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  color: var(--sd-green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sd-eyebrow span:first-child {
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.sd-eyebrow-light {
+  color: #6ee7b7;
+}
+.sd-eyebrow-light span:first-child {
+  background: #6ee7b7;
+}
+
+/* ==========================================================================
+   1. Redesigned Premium 2-Column Hero Section
+   ========================================================================== */
+.sd-hero-split {
+  padding: 56px 0 72px;
+  background: linear-gradient(180deg, var(--sd-soft) 0%, var(--sd-paper) 100%);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+[data-theme="dark"] .sd-hero-split {
+  background: linear-gradient(180deg, #07151c 0%, #0b1c24 100%);
+}
+
+.sd-hero-split-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.sd-breadcrumb-nav {
+  margin-bottom: 24px;
+}
+
+.sd-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sd-muted);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 8px 16px;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 999px;
+  box-shadow: var(--sd-shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.sd-back-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--sd-green);
+  transition: transform 0.2s ease;
+}
+
+.sd-back-link:hover {
+  background: var(--sd-soft);
+  color: var(--sd-ink);
+  transform: translateX(-3px);
+  border-color: var(--sd-green);
+}
+
+.sd-back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+.sd-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sd-mint);
+  border: 1px solid rgba(45, 138, 104, 0.3);
+  border-radius: 999px;
+  padding: 7px 18px;
+  margin-bottom: 20px;
+  color: var(--sd-green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .sd-hero-badge {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+.sd-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sd-green);
+  box-shadow: 0 0 10px var(--sd-green);
+}
+
+[data-theme="dark"] .sd-badge-dot {
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+}
+
+.sd-hero-title {
+  font-size: clamp(34px, 4.2vw, 54px);
+  line-height: 1.14;
+  margin-bottom: 20px;
+  color: var(--sd-ink);
+}
+
+[data-theme="dark"] .sd-hero-title {
+  color: #f1f5f9;
+}
+
+.sd-hero-subtitle {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.75;
+  color: var(--sd-muted);
+  max-width: 620px;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.sd-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.sd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+}
+
+.sd-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.sd-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.sd-btn-primary {
+  background: var(--sd-green);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(45, 138, 104, 0.28);
+}
+
+.sd-btn-primary:hover {
+  background: #247556;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(45, 138, 104, 0.38);
+}
+
+.sd-btn-outline {
+  background: var(--sd-card-bg);
+  color: var(--sd-ink);
+  border: 1px solid var(--sd-line);
+  box-shadow: var(--sd-shadow-sm);
+}
+
+.sd-btn-outline:hover {
+  background: var(--sd-soft);
+  border-color: var(--sd-green);
+  color: var(--sd-green);
+  transform: translateY(-2px);
+}
+
+.sd-btn-light {
+  background: #ffffff;
+  color: var(--sd-ink);
+  box-shadow: var(--sd-shadow-md);
+}
+
+.sd-btn-light:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  color: var(--sd-green);
+}
+
+/* Hero Metrics Bar */
+.sd-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  padding-top: 28px;
+  border-top: 1px solid var(--sd-line);
+}
+
+.sd-metric-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 10px;
+  box-shadow: var(--sd-shadow-sm);
+}
+
+.sd-metric-chip strong {
+  font-family: var(--sd-heading);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--sd-green);
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .sd-metric-chip strong {
+  color: #34d399;
+}
+
+.sd-metric-chip span {
+  font-size: 11px;
+  color: var(--sd-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Hero Visual Frame (Right Column) */
+.sd-hero-visual {
+  position: relative;
+}
+
+.sd-hero-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--sd-shadow-lg);
+  border: 1px solid var(--sd-line);
+  background: var(--sd-card-bg);
+}
+
+.sd-hero-img {
+  display: block;
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.sd-hero-frame:hover .sd-hero-img {
+  transform: scale(1.03);
+}
+
+/* Floating Glassmorphic Badges on Hero Image */
+.sd-hero-floating-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(16, 42, 54, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  color: #34d399;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.sd-hero-floating-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: #34d399;
+}
+
+.sd-hero-bottom-card {
+  position: absolute;
+  bottom: 20px;
+  inset-inline: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(16, 42, 54, 0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  color: var(--sd-ink);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .sd-hero-bottom-card {
+  background: rgba(17, 40, 51, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+.sd-hero-bottom-card .sd-card-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--sd-mint);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--sd-green);
+}
+
+[data-theme="dark"] .sd-hero-bottom-card .sd-card-icon-wrap {
+  background: rgba(52, 211, 153, 0.18);
+  color: #34d399;
+}
+
+.sd-hero-bottom-card .sd-card-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.sd-hero-bottom-card strong {
+  display: block;
+  font-family: var(--sd-heading);
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.sd-hero-bottom-card span {
+  font-size: 12px;
+  color: var(--sd-muted);
+}
+
+/* ==========================================================================
+   2. Comprehensive Service Overview (Expanded 2-Col Architecture Layout)
+   ========================================================================== */
+.sd-overview-section {
+  padding: 100px 0 90px;
+  background: var(--sd-paper);
+}
+
+.sd-overview-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.sd-overview-copy .dual-heading {
+  margin-bottom: 24px;
+}
+
+.sd-lead-p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--sd-ink);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+[data-theme="dark"] .sd-lead-p {
+  color: #e2e8f0;
+}
+
+.sd-body-p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--sd-muted);
+  margin-bottom: 32px;
+}
+
+/* Service Scope Badges inside Overview */
+.sd-scope-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.sd-scope-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  box-shadow: var(--sd-shadow-sm);
+}
+
+.sd-scope-tag svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--sd-green);
+}
+
+/* Overview Visual Card */
+.sd-overview-visual {
+  position: relative;
+}
+
+.sd-visual-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--sd-shadow-lg);
+  border: 1px solid var(--sd-line);
+}
+
+.sd-visual-card img {
+  display: block;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.sd-visual-card:hover img {
+  transform: scale(1.03);
+}
+
+.sd-floating-stat-card {
+  position: absolute;
+  bottom: 24px;
+  inset-inline: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: rgba(16, 42, 54, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  color: #ffffff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.sd-stat-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(52, 211, 153, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.sd-stat-icon-wrap svg {
+  width: 24px;
+  height: 24px;
+  stroke: #34d399;
+}
+
+.sd-stat-copy strong {
+  display: block;
+  font-family: var(--sd-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.sd-stat-copy span {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   3. "What's Included / Key Deliverables" (Rich 6-Card Grid)
+   ========================================================================== */
+.sd-deliverables-section {
+  padding: 100px 0 110px;
+  background: var(--sd-soft);
+  border-top: 1px solid var(--sd-line);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+.sd-section-header {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 56px;
+}
+
+.sd-section-header .dual-heading {
+  margin-bottom: 16px;
+}
+
+.sd-section-header p:last-child {
+  font-size: 15px;
+  color: var(--sd-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.sd-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sd-card {
+  position: relative;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 14px;
+  padding: 34px 30px;
+  box-shadow: var(--sd-shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sd-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sd-green);
+  box-shadow: var(--sd-shadow-md);
+}
+
+.sd-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sd-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--sd-mint);
+  display: grid;
+  place-items: center;
+  color: var(--sd-green);
+}
+
+[data-theme="dark"] .sd-card-icon {
+  background: rgba(52, 211, 153, 0.14);
+  color: #34d399;
+}
+
+.sd-card-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+.sd-card-step-badge {
+  font-family: var(--sd-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--sd-muted);
+  background: var(--sd-paper);
+  border: 1px solid var(--sd-line);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.sd-card h3 {
+  font-family: var(--sd-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+
+.sd-card p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--sd-muted);
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+.sd-card-deliverable-list {
+  list-style: none;
+  padding: 16px 0 0;
+  margin: 0;
+  border-top: 1px dashed var(--sd-line);
+  display: grid;
+  gap: 10px;
+}
+
+.sd-card-deliverable-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sd-ink);
+}
+
+[data-theme="dark"] .sd-card-deliverable-list li {
+  color: #cbd5e1;
+}
+
+.sd-card-deliverable-list svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--sd-green);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   4. Service Scope, Pricing Model & Guaranteed SLAs
+   ========================================================================== */
+.sd-scope-pricing-section {
+  padding: 110px 0;
+  background: var(--sd-paper);
+}
+
+.sd-scope-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.sd-pricing-card,
+.sd-sla-card {
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 16px;
+  padding: 42px 38px;
+  box-shadow: var(--sd-shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.sd-tier-header {
+  margin-bottom: 24px;
+}
+
+.sd-tier-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--sd-mint);
+  color: var(--sd-green);
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .sd-tier-tag {
+  background: rgba(52, 211, 153, 0.16);
+  color: #34d399;
+}
+
+.sd-tier-rate {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 16px 0 8px;
+}
+
+.sd-tier-rate strong {
+  font-family: var(--sd-heading);
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--sd-ink);
+  letter-spacing: -0.03em;
+}
+
+.sd-tier-rate span {
+  font-size: 13px;
+  color: var(--sd-muted);
+  font-weight: 600;
+}
+
+.sd-tier-desc {
+  font-size: 14px;
+  color: var(--sd-muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.sd-tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: grid;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.sd-tier-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--sd-ink);
+}
+
+[data-theme="dark"] .sd-tier-features li {
+  color: #e2e8f0;
+}
+
+.sd-tier-features svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--sd-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* SLA Guarantee Cards */
+.sd-sla-items {
+  display: grid;
+  gap: 18px;
+  margin: 28px 0 32px;
+  flex-grow: 1;
+}
+
+.sd-sla-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--sd-soft);
+  border: 1px solid var(--sd-line);
+}
+
+.sd-sla-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--sd-card-bg);
+  display: grid;
+  place-items: center;
+  color: var(--sd-green);
+  flex-shrink: 0;
+  box-shadow: var(--sd-shadow-sm);
+}
+
+.sd-sla-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.sd-sla-text strong {
+  display: block;
+  font-family: var(--sd-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  margin-bottom: 4px;
+}
+
+.sd-sla-text p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--sd-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. Step-by-Step Workflow (Cinematic Dark Section)
+   ========================================================================== */
+.sd-workflow-section {
+  padding: 110px 0;
+  background: var(--sd-navy-dark);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.sd-workflow-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(45, 138, 104, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sd-workflow-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sd-workflow-copy .dual-heading {
+  margin-bottom: 20px;
+}
+
+.sd-workflow-copy p:not(.sd-eyebrow) {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+.sd-workflow-steps {
+  display: grid;
+  gap: 20px;
+}
+
+.sd-step-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 28px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.sd-step-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(52, 211, 153, 0.4);
+  transform: translateX(4px);
+}
+
+.sd-step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(52, 211, 153, 0.14);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  display: grid;
+  place-items: center;
+  font-family: var(--sd-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.sd-step-info h3 {
+  font-family: var(--sd-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.sd-step-info p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ==========================================================================
+   6. Service FAQs Section (Accordion)
+   ========================================================================== */
+.sd-faq-section {
+  padding: 100px 0;
+  background: var(--sd-paper);
+}
+
+.sd-faq-accordion {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.sd-faq-item {
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.sd-faq-item:hover {
+  border-color: var(--sd-green);
+}
+
+.sd-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  background: none;
+  border: none;
+  font-family: var(--sd-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  text-align: left;
+  cursor: pointer;
+  gap: 16px;
+}
+
+[data-theme="dark"] .sd-faq-question {
+  color: #f1f5f9;
+}
+
+.sd-faq-toggle-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--sd-soft);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--sd-green);
+  transition: transform 0.25s ease;
+}
+
+.sd-faq-toggle-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+.sd-faq-item.active .sd-faq-toggle-icon {
+  transform: rotate(180deg);
+  background: var(--sd-green);
+  color: #ffffff;
+}
+
+.sd-faq-answer {
+  padding: 0 28px 24px;
+  display: none;
+}
+
+.sd-faq-item.active .sd-faq-answer {
+  display: block;
+}
+
+.sd-faq-answer p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--sd-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   7. Related Services Section
+   ========================================================================== */
+.sd-related-section {
+  padding: 100px 0;
+  background: var(--sd-soft);
+  border-top: 1px solid var(--sd-line);
+}
+
+.sd-related-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 44px;
+}
+
+.sd-view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--sd-green);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sd-view-all-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--sd-green);
+  transition: transform 0.2s ease;
+}
+
+.sd-view-all-link:hover {
+  color: var(--sd-green);
+  transform: translateX(2px);
+}
+
+.sd-view-all-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.sd-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sd-related-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: var(--sd-shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sd-related-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--sd-green);
+  box-shadow: var(--sd-shadow-md);
+}
+
+.sd-related-thumb {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.sd-related-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.sd-related-card:hover .sd-related-thumb img {
+  transform: scale(1.06);
+}
+
+.sd-related-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  background: rgba(16, 42, 54, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: #34d399;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.sd-related-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sd-related-body h3 {
+  font-family: var(--sd-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.sd-related-body p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--sd-muted);
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+.sd-related-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sd-green);
+}
+
+.sd-related-action svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.sd-related-card:hover .sd-related-action svg {
+  transform: translate(3px, -3px);
+}
+
+/* ==========================================================================
+   8. Premium CTA Section
+   ========================================================================== */
+.sd-cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #102a36 0%, #0d382d 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .sd-cta-section {
+  background: linear-gradient(135deg, #09171f 0%, #092c20 100%);
+}
+
+.sd-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.sd-cta-copy .dual-heading {
+  margin-bottom: 16px;
+}
+
+.sd-cta-copy p:not(.sd-eyebrow) {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #cbd5e1;
+  max-width: 640px;
+  margin: 0;
+}
+
+.sd-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   NEW SECTION A: Interactive Operational SLA Matrix
+   ========================================================================== */
+.sd-sla-matrix-section {
+  padding: 100px 0;
+  background: var(--sd-paper);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+.sd-sla-table-wrapper {
+  max-width: 1050px;
+  margin: 0 auto;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--sd-shadow-md);
+}
+
+.sd-sla-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sd-sla-table th {
+  padding: 20px 24px;
+  font-family: var(--sd-heading);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--sd-soft);
+  color: var(--sd-ink);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+.sd-sla-table td {
+  padding: 22px 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--sd-muted);
+  border-bottom: 1px solid var(--sd-line);
+  vertical-align: top;
+}
+
+.sd-sla-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sd-sla-table td strong {
+  display: block;
+  font-family: var(--sd-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sd-ink);
+  margin-bottom: 4px;
+}
+
+.sd-sla-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sd-sla-badge.guaranteed {
+  background: var(--sd-mint);
+  color: var(--sd-green);
+}
+
+[data-theme="dark"] .sd-sla-badge.guaranteed {
+  background: rgba(52, 211, 153, 0.18);
+  color: #34d399;
+}
+
+/* ==========================================================================
+   NEW SECTION B: Real-World Case Study / Performance Proof
+   ========================================================================== */
+.sd-case-study-section {
+  padding: 100px 0;
+  background: var(--sd-soft);
+  border-bottom: 1px solid var(--sd-line);
+}
+
+.sd-case-study-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.sd-case-study-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sd-shadow-lg);
+  border: 1px solid var(--sd-line);
+}
+
+.sd-case-study-card img {
+  display: block;
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+}
+
+.sd-case-pill {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background: rgba(16, 42, 54, 0.9);
+  color: #34d399;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sd-case-study-copy .dual-heading {
+  margin-bottom: 20px;
+}
+
+.sd-case-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.sd-case-metric-box {
+  padding: 18px;
+  background: var(--sd-card-bg);
+  border: 1px solid var(--sd-line);
+  border-radius: 12px;
+  box-shadow: var(--sd-shadow-sm);
+}
+
+.sd-case-metric-box strong {
+  display: block;
+  font-family: var(--sd-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--sd-green);
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .sd-case-metric-box strong {
+  color: #34d399;
+}
+
+.sd-case-metric-box span {
+  font-size: 11px;
+  color: var(--sd-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .sd-hero-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .sd-hero-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sd-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .sd-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sd-scope-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .sd-workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .sd-case-study-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .sd-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sd-shell {
+    width: min(100% - 32px, 580px);
+  }
+  .sd-hero-split {
+    padding: 36px 0 50px;
+  }
+  .sd-hero-metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .sd-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .sd-case-metrics {
+    grid-template-columns: 1fr;
+  }
+  .sd-related-grid {
+    grid-template-columns: 1fr;
+  }
+  .sd-related-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .sd-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .sd-pricing-card,
+  .sd-sla-card {
+    padding: 30px 24px;
+  }
+  .sd-step-card {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+  .sd-visual-card img,
+  .sd-hero-img,
+  .sd-case-study-card img {
+    height: 360px;
+  }
+  .sd-sla-table th,
+  .sd-sla-table td {
+    padding: 14px 16px;
+  }
+}
