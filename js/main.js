@@ -29,6 +29,7 @@
       initializeStickyHeader();
       const year = document.getElementById('current-year');
       if (year) year.textContent = new Date().getFullYear();
+      window.dispatchEvent(new CustomEvent('rentora-components-loaded'));
     } catch (error) {
       console.error(error);
       if (navbarTarget) navbarTarget.innerHTML = '<div class="component-error">Navbar could not load. Please run this project using VS Code Live Server.</div>';

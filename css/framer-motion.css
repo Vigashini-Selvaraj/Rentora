@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Framer Motion-style Spring Physics & Viewport Reveal System
+   ========================================================================== */
+
+/* Reduced motion preference respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fm-motion,
+  .fm-motion-child {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Base Motion Initial State: Spring translation + soft blur + opacity */
+.fm-motion {
+  opacity: 0;
+  transform: translateY(32px) scale(0.985);
+  filter: blur(4px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slide in from left */
+.fm-motion-left {
+  opacity: 0;
+  transform: translateX(-36px) scale(0.985);
+  filter: blur(4px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slide in from right */
+.fm-motion-right {
+  opacity: 0;
+  transform: translateX(36px) scale(0.985);
+  filter: blur(4px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Zoom / scale up (e.g. hero images, modal cards) */
+.fm-motion-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active / In-View State */
+.fm-in-view,
+.fm-in-view.fm-motion,
+.fm-in-view.fm-motion-left,
+.fm-in-view.fm-motion-right,
+.fm-in-view.fm-motion-scale {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Staggered Children */
+.fm-stagger-parent .fm-motion-child {
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  filter: blur(3px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fm-stagger-parent.fm-in-view .fm-motion-child {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Automated Stagger Delays (child 1 to 12) */
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(1) { transition-delay: 0.05s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(2) { transition-delay: 0.12s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(3) { transition-delay: 0.19s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(4) { transition-delay: 0.26s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(5) { transition-delay: 0.33s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(6) { transition-delay: 0.40s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(7) { transition-delay: 0.47s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(8) { transition-delay: 0.54s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(9) { transition-delay: 0.61s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(10) { transition-delay: 0.68s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(11) { transition-delay: 0.75s; }
+.fm-stagger-parent.fm-in-view .fm-motion-child:nth-child(12) { transition-delay: 0.82s; }
+
+/* Micro-interaction Spring Hovers (Framer Motion whileHover / whileTap) */
+.fm-hover-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.fm-hover-lift:hover {
+  transform: translateY(-4px) scale(1.01) !important;
+}
+
+.fm-hover-lift:active {
+  transform: translateY(0) scale(0.985) !important;
+}
+
+.fm-hover-press {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.fm-hover-press:active {
+  transform: scale(0.96) !important;
+}
